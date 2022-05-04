@@ -19,6 +19,15 @@ Route::get('/', function () {
 
 Route::prefix('guru')->name('guru.')->namespace('Guru')->group(function(){
     Route::get('/', 'DashboardController@index')->name('dashboard');
+
+    Route::get('siswa','SiswaController@index')->name('siswa');
+
+    Route::get('guru','GuruController@index')->name('guru');
+
+    Route::get('kelas','KelasController@index')->name('kelas');
+
+    Route::get('bimbingan-masuk','BKController@index')->name('bimbingan.masuk');
+    Route::get('bimbingan-ditanggapi','BKDitanggapiController@sudah_ditanggapi')->name('bimbingan.ditanggapi');
 });
 
 Route::prefix('siswa')->name('siswa.')->namespace('Siswa')->group(function(){

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Guru;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class SiswaController extends Controller
+class KelasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class SiswaController extends Controller
      */
     public function index()
     {
-       return view('guru.siswa.index');
+        return view('guru.kelas.index');
     }
 
     /**

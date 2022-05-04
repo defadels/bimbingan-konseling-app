@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Siswa;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class BKController extends Controller
+class BKPribadiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class BKController extends Controller
      */
     public function index()
     {
-        //
+        return view('siswa.bimbingan.pribadi.index');
     }
 
     /**

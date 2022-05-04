@@ -26,12 +26,17 @@ Route::prefix('guru')->name('guru.')->namespace('Guru')->group(function(){
 
     Route::get('kelas','KelasController@index')->name('kelas');
 
-    Route::get('bimbingan-masuk','BKController@index')->name('bimbingan.masuk');
-    Route::get('bimbingan-ditanggapi','BKDitanggapiController@sudah_ditanggapi')->name('bimbingan.ditanggapi');
+    Route::get('bimbingan-konseling/masuk','BKController@index')->name('bimbingan.masuk');
+    Route::get('bimbingan-konseling/ditanggapi','BKTanggapanController@index')->name('bimbingan.ditanggapi');
 });
 
 Route::prefix('siswa')->name('siswa.')->namespace('Siswa')->group(function(){
     Route::get('/','DashboardController@index')->name('dashboard');
+
+    Route::get('bimbingan-konseling/karir','BKKarirController@index')->name('bimbingan.karir');
+    Route::get('bimbingan-konseling/konseling-kelompok','BKKonselingKelompokController@index')->name('bimbingan.konseling.kelompok');
+    Route::get('bimbingan-konseling/kelompok','BKKelompokController@index')->name('bimbingan.kelompok');
+    Route::get('bimbingan-konseling/pribadi','BKPribadiController@index')->name('bimbingan.pribadi');
 });
 
 Auth::routes(['verify' => true]);

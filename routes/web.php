@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::prefix('guru')->name('guru.')->namespace('Guru')->group(function(){
+    Route::get('/', 'DashboardController@index')->name('dashboard');
+});
+
+Route::prefix('siswa')->name('siswa.')->namespace('Siswa')->group(function(){
+    Route::get('/','DashboardController@index')->name('dashboard');
+});
+
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -17,8 +17,10 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('nama')->nullable();
             $table->string('email')->unique();
-            $table->string('nis')->unique();
-            $table->string('nip')->unique();
+            $table->string('tempat_lahir')->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->string('nis')->unique()->nullable();
+            $table->string('nip')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('status', ['aktif','nonaktif'])->default('aktif');

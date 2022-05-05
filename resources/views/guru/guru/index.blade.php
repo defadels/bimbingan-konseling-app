@@ -35,6 +35,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Tabel Data Guru</h5>
                     <div class="table-responsive">
+                    @if(count($daftar_guru)>0)    
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
@@ -46,10 +47,11 @@
                                 </tr>
                             </thead>
                             <tbody>
+                               @foreach($daftar_guru as $guru) 
                                 <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
+                                    <td>{{$guru->nama}}</td>
+                                    <td>{{$guru->mapel}}</td>
+                                    <td>{{$guru->status}}</td>
                                     <td>
                                         <a href="" title="Lihat" class="btn btn-md btn-info">
                                             <i class="fas fa-eye"></i> Lihat
@@ -60,10 +62,14 @@
                                     </td>
                                     
                                 </tr>
-                                
+                                @endforeach
                             </tbody>
                             
                         </table>
+
+                        @else
+                            <h2 class="text-center p-3">Data guru kosong</h2>
+                         @endif   
                     </div>
 
                 </div>

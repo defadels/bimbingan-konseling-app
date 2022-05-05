@@ -104,10 +104,10 @@
                 <form action="{{ route('guru.kelas.destroy', $kelas->id ?? '') }}" method="post">
                 @csrf
                 @method('delete')
-                <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-sm btn-danger" type="submit">
-                <i class="bx bx-trash"></i>    
-                Delete</button>
+                <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                <button class="btn btn-sm btn-danger text-white" type="submit">
+                <i class="fas fa-trash-alt"></i>    
+                Hapus</button>
                 </form>
             </div>
         </div>

@@ -65,6 +65,26 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" value="{{old('email') ?? $guru->email ?? ''}}" name="email" id="" class="form-control @error('email'){{'is-invalid'}}@enderror" placeholder="Masukkan email guru">
+
+                        @error('email')
+                        <span class="text-danger">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" @if(isset($guru))placeholder="Ketik jika ingin diubah"@endif name="password" id="" class="form-control @error('password'){{'is-invalid'}}@enderror" placeholder="Masukkan password guru">
+
+                        @error('password')
+                        <span class="text-danger">
+                            {{$message}}
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="mapel">Mata Pelajaran</label>
                         <input type="text" value="{{old('mapel') ?? $guru->mapel ?? ''}}" name="mapel" id="" class="form-control @error('mapel'){{'is-invalid'}}@enderror" placeholder="Masukkan mata pelajaran guru">
 
@@ -86,7 +106,7 @@
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <textarea name="alamat" value="{{old('alamat') ?? $guru->nip ?? ''}}" id="" cols="30" rows="10" class="form-control @error('alamat'){{'is-invalid'}}@enderror" placeholder="Masukkan alamat lengkap"></textarea>
+                        <textarea name="alamat" id="" cols="30" rows="10" class="form-control @error('alamat'){{'is-invalid'}}@enderror" placeholder="Masukkan alamat lengkap">{{old('alamat') ?? $guru->alamat ?? ''}}</textarea>
 
                         @error('alamat')
                         <span class="text-danger">

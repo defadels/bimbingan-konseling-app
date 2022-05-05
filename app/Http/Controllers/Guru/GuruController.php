@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Guru;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
-use Valdiator;
+use Validator;
 use Str;
 use Illuminate\Support\Facades\Hash;
 
@@ -80,6 +80,8 @@ class GuruController extends Controller
             'alamat' => $request->alamat,
             'mapel' => $request->mapel,
             'nomor_hp' => $request->nomor_hp,
+            'status' => 'aktif',
+            'jenis' => 'guru'
         ]);
 
         return redirect()->route('guru.guru')
@@ -109,7 +111,7 @@ class GuruController extends Controller
 
         $button = "Update";
 
-        return view('guru.guru.edit',compact('guru','url','button'));
+        return view('guru.guru.form',compact('guru','url','button'));
     }
 
     /**
@@ -125,9 +127,8 @@ class GuruController extends Controller
 
         $rules = [
             'nama' => ['required'],
-            'nip' => ['max:20','unique:users,nip'],
-            'email' => ['required','unique:users,email'],
-            'password' => ['required'],
+            'nip' => ['max:20','unique:users,nip,'.$guru->id],
+            'email' => ['required','unique:users,email,'.$guru->id],
             'mapel' => ['required'],
             'alamat' => ['max:50'],
             'nomor_hp' => ['regex:/^(^\+628\s?|^08)(\d{3,4}?){2}\d{2,4}$/','max:13']
@@ -138,7 +139,6 @@ class GuruController extends Controller
             'nama.required' => 'Nama kelas harus diisi',
             'nip.max' => 'NIP maksimal 20 karakter',
             'email.required' => 'Email harus diisi',
-            'password.required' => 'Password harus diisi',
             'mapel.required' => 'Mata pelajaran harus diisi',
             'alamat.max' => 'Alamat batas maksimal 300 karakter',
             'nomor_hp.max' => 'Nomor handphone maksimal 13 digit',
@@ -150,7 +150,9 @@ class GuruController extends Controller
         $guru->nama = $request->nama;
         $guru->nip = $request->nip;
         $guru->email = $request->email;
-        $guru->password = $request->password;
+        if ($request->has('password') && $request->password != ''){
+            $guru->password = Hash::make($request->password);
+        }
         $guru->mapel = $request->mapel;
         $guru->alamat = $request->alamat;
         $guru->nomor_hp = $request->nomor_hp;

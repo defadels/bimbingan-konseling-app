@@ -56,7 +56,7 @@
                                         <a href="" title="Lihat" class="btn btn-md btn-info">
                                             <i class="fas fa-eye"></i> Lihat
                                         </a>
-                                        <a href="" title="Edit" class="btn btn-md btn-success">
+                                        <a href="{{route('guru.guru.edit',$guru->id)}}" title="Edit" class="btn btn-md btn-success">
                                             <i class="far fa-edit"></i> Edit
                                         </a>
                                     </td>

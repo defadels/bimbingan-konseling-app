@@ -25,7 +25,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->enum('status', ['aktif','nonaktif'])->default('aktif');
             $table->enum('agama', ['islam','kristen','protestan','hindu','buddha','khonghucu']);
-            $table->enum('jenis', ['siswa','guru'])->default('siswa');
+            $table->enum('jenis', ['siswa','guru']);
+            $table->enum('jenis_kelamin', ['laki-laki','perempuan']);
             $table->string('mapel')->nullable();
             $table->string('nomor_hp')->nullable();
             $table->longText('alamat')->nullable();

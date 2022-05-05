@@ -35,6 +35,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Tabel Data Siswa</h5>
                     <div class="table-responsive">
+                      @if(count($daftar_siswa)>0)  
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
@@ -47,24 +48,29 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($daftar_siswa as $siswa)
                                 <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
+                                    <td>{{$siswa->nis}}</td>
+                                    <td>{{$siswa->nama}}</td>
+                                    <td>{{$siswa->jenis_kelamin}}</td>
                                     <td>61</td>
                                     <td>
                                         <a href="" title="Lihat" class="btn btn-md btn-info">
                                             <i class="fas fa-eye"></i> Lihat
                                         </a>
-                                        <a href="" title="Edit" class="btn btn-md btn-success">
+                                        <a href="{{route('guru.siswa.edit',$siswa->id)}}" title="Edit" class="btn btn-md btn-success">
                                             <i class="far fa-edit"></i> Edit
                                         </a>
                                     </td>
                                 </tr>
-                                
+                                @endforeach
                             </tbody>
                             
                         </table>
+
+                        @else 
+                         <h2 class="text-center p-3">Data Siswa Kosong</h2>
+                        @endif 
                     </div>
 
                 </div>

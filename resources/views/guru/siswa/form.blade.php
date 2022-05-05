@@ -1,6 +1,6 @@
 @extends('layout.guru_layout')
 
-@section('title','Dashboard Guru')
+@section('title','Form Data Siswa')
 
 @section('content')
 <div class="page-breadcrumb">
@@ -13,7 +13,9 @@
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Data Siswa</li>
                     </ol>
-                    <a href="" class="btn btn-md btn-danger text-white"><i class="fas fa-trash-alt"></i> Hapus</a>
+                  @if(isset($siswa))  
+                    <button data-toggle="modal" data-target="#deleteModal" class="btn btn-md btn-danger text-white"><i class="fas fa-trash-alt"></i> Hapus</button>
+                    @endif
                 </nav>
             </div>
         </div>
@@ -33,32 +35,135 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Tabel Data Siswa</h5>
+                    <h5 class="card-title">Form Data Siswa</h5>
                     <hr>
-                    <form action="{{route($url)}}" method="post">
+                    <form action="{{route($url, $siswa->id ?? '')}}" method="post">
                         @csrf
-  
+                        
+                       @if(isset($siswa)) 
                         @method('put')
+                       @endif
+
                       <div class="form-group">
-                          <label for="nip">NISN</label>
-                          <input type="text" name="nip" id="" class="form-control" placeholder="Masukkan NIP guru">
-                      </div>
+                          <label for="nis">NIS</label>
+                          <input type="text" value="{{old('nis') ?? $siswa->nis ?? ''}}" name="nis" id="" class="form-control @error('nis') {{'is-invalid'}} @enderror" placeholder="Masukkan NIS siswa">
+                           
+                          @error('nis')
+                          <span class="text-danger">
+                              {{$message}}
+                          </span>
+                          @enderror
+
+                        </div>
+
                       <div class="form-group">
                           <label for="nama">Nama Siswa</label>
-                          <input type="text" name="nama" id="" class="form-control" placeholder="Masukkan nama guru">
-                      </div>
+                          <input type="text" value="{{old('nama') ?? $siswa->nama ?? ''}}" name="nama" id="" class="form-control" placeholder="Masukkan nama siswa">
+                      
+                          @error('nama')
+                          <span class="text-danger">
+                              {{$message}}
+                          </span>
+                          @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tempat_lahir">Tempat Lahir</label>
+                            <input type="text" value="{{old('tempat_lahir') ?? $siswa->tempat_lahir ?? ''}}" name="tempat_lahir" id="" class="form-control" placeholder="Masukkan tempat lahir siswa">
+                        
+                            @error('tempat_lahir')
+                            <span class="text-danger">
+                                {{$message}}
+                            </span>
+                            @enderror
+                          </div>
+                        
+                          <div class="form-group">
+                            <label for="tanggal_lahir">Tanggal Lahir</label>
+                            <input type="date" value="{{old('tanggal_lahir') ?? $siswa->tanggal_lahir ?? ''}}" name="tanggal_lahir" id="" class="form-control">
+                        
+                            @error('tanggal_lahir')
+                            <span class="text-danger">
+                                {{$message}}
+                            </span>
+                            @enderror
+                          </div>
+                        
+
                       <div class="form-group">
-                          <label for="mapel">Mata Pelajaran</label>
-                          <input type="text" name="mapel" id="" class="form-control" placeholder="Masukkan mata pelajaran guru">
-                      </div>
+                          <label for="jenis_kelamin">Jenis Kelamin</label>
+                          <select name="jenis_kelamin" id="" class="form-control">
+                              @foreach($jenis_kelamin as $jk)
+                                <option value="{{$jk}}" @if(isset($siswa)) {{ $jk == $siswa->jenis_kelamin  ? 'selected' : '' }} @endif>{{$jk}}</option>
+                                @endforeach
+                          </select>
+                          @error('jenis_kelamin')
+                          <span class="text-danger">
+                              {{$message}}
+                          </span>
+                          @enderror
+                        </div>
+
                       <div class="form-group">
                           <label for="nomor_hp">Nomor Telepon</label>
-                          <input type="text" name="nomor_hp" id="" class="form-control" placeholder="Masukkan nomor handphone">
-                      </div>
+                          <input type="text" value="{{old('nomor_hp') ?? $siswa->nomor_hp ?? ''}}" name="nomor_hp" id="" class="form-control" placeholder="Masukkan nomor handphone">
+                          
+                          @error('nomor_hp')
+                          <span class="text-danger">
+                              {{$message}}
+                          </span>
+                          @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="agama">Agama</label>
+                            <select name="agama" id="" class="form-control">
+                                @foreach($daftar_agama as $agama)
+                                  <option value="{{$agama}}" @if(isset($siswa)) {{ $siswa->agama == $agama ? 'selected' : '' }} @endif>{{$agama}}</option>
+                                  @endforeach
+                            </select>
+                            @error('jenis_kelamin')
+                            <span class="text-danger">
+                                {{$message}}
+                            </span>
+                            @enderror
+                          </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" value="{{old('email') ?? $siswa->email ?? ''}}" name="email" id="" class="form-control @error('email') {{'is-invalid'}} @enderror" placeholder="Masukkan NIP guru">
+                             
+                            @error('email')
+                            <span class="text-danger">
+                                {{$message}}
+                            </span>
+                            @enderror
+  
+                          </div>
+
+                          <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="" class="form-control @error('password') {{'is-invalid'}} @enderror" @if(isset($siswa))placeholder="Ketik jika ingin diubah"@endif>
+                             
+                            @error('password')
+                            <span class="text-danger">
+                                {{$message}}
+                            </span>
+                            @enderror
+  
+                          </div>
+
                       <div class="form-group">
                           <label for="alamat">Alamat</label>
-                          <textarea name="alamat" id="" cols="30" rows="10" class="form-control" placeholder="Masukkan alamat lengkap"></textarea>
-                      </div>
+                          <textarea name="alamat" id="" cols="30" rows="10" class="form-control" placeholder="Masukkan alamat lengkap">{{old('alamat') ?? $siswa->alamat ?? ''}}</textarea>
+                        
+                          @error('alamat')
+                          <span class="text-danger">
+                              {{$message}}
+                          </span>
+                          @enderror
+                      
+                        </div>
   
                       <input type="submit" value="{{$button}}" class="btn btn-md btn-info">
                     </form>
@@ -77,4 +182,34 @@
     <!-- End Right sidebar -->
     <!-- ============================================================== -->
 </div>
+
+@if(isset($siswa))
+<!-- modal -->
+<div class="modal fade" id="deleteModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Delete</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Kamu yakin menghapus data ini?
+                </p>  
+            </div>
+            <div class="modal-footer">
+                <form action="{{ route('guru.siswa.destroy', $siswa->id ?? '') }}" method="post">
+                @csrf
+                @method('delete')
+                <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                <button class="btn btn-sm btn-danger text-white" type="submit">
+                <i class="fas fa-trash-alt"></i>    
+                Hapus</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+
 @endsection

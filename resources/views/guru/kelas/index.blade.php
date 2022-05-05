@@ -13,6 +13,7 @@
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Data Kelas</li>
                     </ol>
+                    <a href="{{route('guru.kelas.create')}}" class="btn btn-md btn-primary">+ Tambah</a>
                 </nav>
             </div>
         </div>

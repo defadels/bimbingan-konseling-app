@@ -21,10 +21,25 @@ Route::prefix('guru')->name('guru.')->namespace('Guru')->group(function(){
     Route::get('/', 'DashboardController@index')->name('dashboard');
 
     Route::get('siswa','SiswaController@index')->name('siswa');
+    Route::get('siswa/create','SiswaController@create')->name('siswa.create');
+    Route::post('siswa','SiswaController@store')->name('siswa.store');
+    Route::get('siswa/{siswa}','SiswaController@edit')->name('siswa.edit');
+    Route::put('siswa/{siswa}','SiswaController@update')->name('siswa.update');
+    Route::delete('siswa/{siswa}','SiswaController@destroy')->name('siswa.destroy');
 
     Route::get('guru','GuruController@index')->name('guru');
+    Route::get('guru/create','GuruController@create')->name('guru.create');
+    Route::post('guru','GuruController@store')->name('guru.store');
+    Route::get('guru/{guru}','GuruController@edit')->name('guru.edit');
+    Route::put('guru/{guru}','GuruController@update')->name('guru.update');
+    Route::delete('guru/{guru}','GuruController@destroy')->name('guru.destroy');
 
     Route::get('kelas','KelasController@index')->name('kelas');
+    Route::get('kelas/create','KelasController@create')->name('kelas.create');
+    Route::post('kelas','KelasController@store')->name('kelas.store');
+    Route::get('kelas/{kelas}','KelasController@edit')->name('kelas.edit');
+    Route::put('kelas/{kelas}','KelasController@update')->name('kelas.update');
+    Route::delete('kelas/{kelas}','KelasController@destroy')->name('kelas.destroy');
 
     Route::get('bimbingan-konseling/masuk','BKController@index')->name('bimbingan.masuk');
     Route::get('bimbingan-konseling/ditanggapi','BKTanggapanController@index')->name('bimbingan.ditanggapi');

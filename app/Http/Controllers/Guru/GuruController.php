@@ -24,7 +24,11 @@ class GuruController extends Controller
      */
     public function create()
     {
-        //
+        $url = 'guru.guru.store';
+
+        $button = 'Simpan';
+
+        return view('guru.guru.form',compact('url','button'));
     }
 
     /**

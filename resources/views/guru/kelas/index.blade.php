@@ -35,6 +35,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Tabel Data Kelas</h5>
                     <div class="table-responsive">
+                        @if(count($daftar_kelas)>0)
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
@@ -45,23 +46,29 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($daftar_kelas as $kelas)
                                 <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
+                                    <td>{{$kelas->nama}}</td>
+                                    <td>{{$kelas->keterangan}}</td>
+                                    <td>0</td>
                                     <td>
                                         <a href="" title="Lihat" class="btn btn-md btn-info">
                                             <i class="fas fa-eye"></i> Lihat
                                         </a>
-                                        <a href="" title="Edit" class="btn btn-md btn-success">
+                                        <a href="{{route('guru.kelas.edit',$kelas->id)}}" title="Edit" class="btn btn-md btn-success">
                                             <i class="far fa-edit"></i> Edit
                                         </a>
                                     </td>
                                 </tr>
+                                @endforeach
                                 
                             </tbody>
                             
                         </table>
+
+                        @else 
+                            <h2 class="text-center p-3">Data kelas kosong</h2>
+                        @endif
                     </div>
 
                 </div>

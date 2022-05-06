@@ -24,7 +24,11 @@ class BKKelompokController extends Controller
      */
     public function create()
     {
-        //
+        $button = "Kirim";
+
+        $url = 'siswa.bimbingan.kelompok.store';
+
+        return view('siswa.bimbingan.kelompok.form',compact('button','url'));
     }
 
     /**

@@ -24,7 +24,11 @@ class BKKarirController extends Controller
      */
     public function create()
     {
-        //
+        $button = "Kirim";
+
+        $url = 'siswa.bimbingan.karir.store';
+
+        return view('siswa.bimbingan.karir.form',compact('button','url'));
     }
 
     /**

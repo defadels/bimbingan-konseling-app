@@ -13,6 +13,7 @@
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">B&K Karir</li>
                     </ol>
+                    <a href="{{route('siswa.bimbingan.karir.create')}}" class="btn btn-md btn-primary">+ Tambah</a>
                 </nav>
             </div>
         </div>

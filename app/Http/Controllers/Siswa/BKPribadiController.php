@@ -23,8 +23,12 @@ class BKPribadiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $button = "Kirim";
+
+        $url = 'siswa.bimbingan.pribadi.store';
+
+        return view('siswa.bimbingan.pribadi.form',compact('button','url'));
     }
 
     /**

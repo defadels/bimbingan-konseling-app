@@ -13,6 +13,7 @@
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Konseling Kelompok</li>
                     </ol>
+                    <a href="{{route('siswa.bimbingan.konseling.kelompok.create')}}" class="btn btn-md btn-primary">+ Tambah</a>
                 </nav>
             </div>
         </div>

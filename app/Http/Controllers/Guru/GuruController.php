@@ -20,7 +20,12 @@ class GuruController extends Controller
     {
         $daftar_guru = User::where('jenis','guru')->get();
 
-        return view('guru.guru.index',compact('daftar_guru'));
+        $status= [
+            'aktif' => 'Aktif',
+            'nonaktif' => 'Nonaktif'
+        ];
+
+        return view('guru.guru.index',compact('daftar_guru', 'status'));
     }
 
     /**

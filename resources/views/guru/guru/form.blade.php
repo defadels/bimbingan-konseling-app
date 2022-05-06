@@ -45,7 +45,7 @@
                       @endif
                     <div class="form-group">
                         <label for="nip">NIP</label>
-                        <input type="text" value="{{old('nip') ?? $guru->nip ?? ''}}" name="nip" id="" class="form-control @error('nip'){{'is-invalid'}}@enderror" placeholder="Masukkan NIP guru">
+                        <input type="text" value="{{old('nip') ?? $guru->nip ?? ''}}" name="nip" id="nio" maxlength="8" class="form-control @error('nip'){{'is-invalid'}}@enderror" placeholder="Masukkan NIP guru">
                         <small>*Kosongkan jika tidak ada NIP</small>
 
                         @error('nip')
@@ -56,7 +56,7 @@
                     </div>
                     <div class="form-group">
                         <label for="nama">Nama Guru</label>
-                        <input type="text" value="{{old('nama') ?? $guru->nama ?? ''}}" name="nama" id="" class="form-control @error('nama'){{'is-invalid'}}@enderror" placeholder="Masukkan nama guru">
+                        <input type="text" value="{{old('nama') ?? $guru->nama ?? ''}}" name="nama" id="nama" class="form-control @error('nama'){{'is-invalid'}}@enderror" placeholder="Masukkan nama guru">
 
                         @error('nama')
                         <span class="text-danger">

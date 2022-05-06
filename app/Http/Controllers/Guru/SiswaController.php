@@ -8,6 +8,7 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Kelas;
 
 class SiswaController extends Controller
 {
@@ -32,6 +33,8 @@ class SiswaController extends Controller
     {
         $url = 'guru.siswa.store';
 
+        $daftar_kelas = Kelas::pluck('nama','id');
+
         $button = 'Simpan';
 
         $jenis_kelamin =[
@@ -45,10 +48,10 @@ class SiswaController extends Controller
             'kristen' => 'Kristen',
             'hindu' => 'Hindu',
             'buddha' => 'Buddha',
-            'konghuchu' => 'Konghuchu'
+            'khonghucu' => 'Khonghucu'
        ];
 
-        return view('guru.siswa.form',compact('url','button','jenis_kelamin','daftar_agama'));
+        return view('guru.siswa.form',compact('url','button','jenis_kelamin','daftar_agama','daftar_kelas'));
         
     }
 
@@ -97,8 +100,9 @@ class SiswaController extends Controller
             'jenis_kelamin' => $request->jenis_kelamin,
             'agama' => $request->agama,
             'nomor_hp' => $request->nomor_hp,
+            'kelas_id' => $request->kelas_id,
             'status' => 'aktif',
-            'jenis' => 'siswa'
+            'jenis' => 'siswa',
         ]);
 
         return redirect()->route('guru.siswa')
@@ -128,6 +132,8 @@ class SiswaController extends Controller
 
         $button = 'Update';
 
+        $daftar_kelas = Kelas::pluck('nama','id');
+
         $jenis_kelamin =[
             'laki-laki' => 'Laki-laki',
             'perempuan' => 'Perempuan'
@@ -139,10 +145,11 @@ class SiswaController extends Controller
             'kristen' => 'Kristen',
             'hindu' => 'Hindu',
             'buddha' => 'Buddha',
-            'konghuchu' => 'Konghuchu'
+            'khonghucu' => 'Khonghucu'
        ];
 
-        return view('guru.siswa.form',compact('url','button','jenis_kelamin','daftar_agama','siswa'));
+        return view('guru.siswa.form',compact('url',
+        'button','jenis_kelamin','daftar_agama','siswa','daftar_kelas'));
     }
 
     /**
@@ -190,6 +197,7 @@ class SiswaController extends Controller
         $siswa->agama = $request->agama;
         $siswa->alamat = $request->alamat;
         $siswa->nomor_hp = $request->nomor_hp;
+        $siswa->kelas_id = $request->kelas_id;
 
         $siswa->save();
 

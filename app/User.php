@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nama', 'email', 'password', 'nomor_hp', 'agama', 'jenis_kelamin','jenis', 'mapel', 'alamat', 'status', 'nis', 'nip', 'tempat_lahir','tanggal_lahir'
+        'nama', 'email', 'password', 'nomor_hp', 'agama', 'jenis_kelamin','jenis', 'mapel', 'alamat', 'status', 'nis', 'nip', 'tempat_lahir','tanggal_lahir','kelas_id'
     ];
 
     /**
@@ -36,4 +36,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function pilihan_kelas(){
+        return $this->belongsTo('App\Kelas', 'kelas_id')->withDefault();
+    }
 }

@@ -41,7 +41,7 @@
                                 <tr>
                                     <th>Nama Kelas</th>
                                     <th>Keterangan</th>
-                                    <th>Jumlah Siswa</th>
+                                    
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -50,12 +50,12 @@
                                 <tr>
                                     <td>{{$kelas->nama}}</td>
                                     <td>{{$kelas->keterangan}}</td>
-                                    <td>0</td>
+                                    
                                     <td>
                                         <a href="" title="Lihat" class="btn btn-md btn-info">
                                             <i class="fas fa-eye"></i> Lihat
                                         </a>
-                                        <a href="{{route('guru.kelas.edit',$kelas->id)}}" title="Edit" class="btn btn-md btn-success">
+                                        <a href="{{route('guru.kelas.edit',$kelas->id)}}" title="Edit" class="btn btn-md btn-success text-white">
                                             <i class="far fa-edit"></i> Edit
                                         </a>
                                     </td>

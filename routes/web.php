@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('guru')->name('guru.')->namespace('Guru')->group(function(){
+Route::prefix('guru')->name('guru.')->middleware('auth','tolakselainguru')->namespace('Guru')->group(function(){
     Route::get('/', 'DashboardController@index')->name('dashboard');
 
     Route::get('siswa','SiswaController@index')->name('siswa');
@@ -45,7 +45,7 @@ Route::prefix('guru')->name('guru.')->namespace('Guru')->group(function(){
     Route::get('bimbingan-konseling/ditanggapi','BKTanggapanController@index')->name('bimbingan.ditanggapi');
 });
 
-Route::prefix('siswa')->name('siswa.')->namespace('Siswa')->group(function(){
+Route::prefix('siswa')->name('siswa.')->middleware('auth','tolakselainsiswa')->namespace('Siswa')->group(function(){
     Route::get('/','DashboardController@index')->name('dashboard');
 
     Route::get('bimbingan-konseling/karir','BKKarirController@index')->name('bimbingan.karir');

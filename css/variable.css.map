@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,iCAAiC;AAIjC,iCAAiC;AAEjC,OAAO,CAAC,8EAAI;AAIZ,gBAAgB;AAiBhB,iBAAiB;AAWjB,kBAAkB;AAelB,sBAAsB;AAMtB,UAAU;AASV,eAAe;AAMf,uBAAuB;AA0BvB,iCAAiC;AAIjC,iCAAiC;AAGjC;;;;;;;;;;;;;;;;GAgBG",
+    "sources": [
+        "../public/matrix/src/scss/variable.scss"
+    ],
+    "names": [],
+    "file": "variable.css"
+}

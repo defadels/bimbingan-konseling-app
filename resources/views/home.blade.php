@@ -13,8 +13,13 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    
+                    <h4>Welcome, {{Auth::user()->nama}}</h4>
+                    <p>as <span class="badge bg-success text-white">{{ucfirst(trans(Auth::user()->jenis))}}</span> </p>
 
-                    {{ __('You are logged in!') }}
+                    <p>{{ __('You are logged in!') }}</p> 
+
+
                 </div>
             </div>
         </div>

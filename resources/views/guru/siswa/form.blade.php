@@ -37,30 +37,76 @@
                 <div class="card-body">
                     <h5 class="card-title">Form Data Siswa</h5>
                     <hr>
-                    <form action="{{route($url, $siswa->id ?? '')}}" method="post">
-                        @csrf
-                        
-                       @if(isset($siswa)) 
-                        @method('put')
-                       @endif
+
+                    @if(isset($siswa))
+
+                    {!! Form::model($siswa, ['route' => [$url, $siswa->id],'method' => 'PUT']) !!}
+
+                    <div class="form-group">
+                        {!! Form::label('nis', 'NIS') !!}
+                        {!! Form::text('nis', old('nis'), ['class' => 'form-control','placeholder' => 'Masukkan NIS siswa']) !!}
+                         
+                        @error('nis')
+                        <span class="text-danger">
+                            {{$message}}
+                        </span>
+                        @enderror
+
+                      </div>
+
+                    <div class="form-group">
+                        <label for="nama">Nama Siswa</label>
+                        {!! Form::label('nama', 'Nama Siswa') !!}
+                        {!! Form::text('nama', old('nama'), ['class' => 'form-control', 'placeholder' => 'Masukkan nama siswa']) !!}
+                    
+                        @error('nama')
+                        <span class="text-danger">
+                            {{$message}}
+                        </span>
+                        @enderror
+                      </div>
 
                       <div class="form-group">
-                          <label for="nis">NIS</label>
-                          <input type="text" value="{{old('nis') ?? $siswa->nis ?? ''}}" name="nis" id="" class="form-control @error('nis') {{'is-invalid'}} @enderror" placeholder="Masukkan NIS siswa">
-                           
-                          @error('nis')
+                          {!! Form::label('tempat_lahir', 'Tempat Lahir') !!}
+                          {!! Form::text('tempat_lahir', old('tempat_lahir'), ['class' => 'form-control', 'placeholder' => 'Masukkan tempat lahir']) !!}
+                      
+                          @error('tempat_lahir')
                           <span class="text-danger">
                               {{$message}}
                           </span>
                           @enderror
 
                         </div>
+                      
+                        <div class="form-group">
+                          <label for="tanggal_lahir">Tanggal Lahir</label>
+                          {!! Form::label('tanggal_lahir','Tanggal Lahir') !!}
+                          {!! Form::date('tanggal_lahir', old('tanggal_lahir'), ['class' => 'form-control']) !!}
+                      
+                          @error('tanggal_lahir')
+                          <span class="text-danger">
+                              {{$message}}
+                          </span>
+                          @enderror
+                        </div>
+                      
+
+                    <div class="form-group">
+                      {!! Form::label('jenis_kelamin', 'Jenis Kelamin') !!}
+                      {!! Form::select('jenis_kelamin', $jenis_kelamin, old('jenis_kelamin'), ['class' => 'form-control', 'placeholder' => '--Pilih jenis kelamin--']) !!}
+                       
+                        @error('jenis_kelamin')
+                        <span class="text-danger">
+                            {{$message}}
+                        </span>
+                        @enderror
+                      </div>
 
                       <div class="form-group">
-                          <label for="nama">Nama Siswa</label>
-                          <input type="text" value="{{old('nama') ?? $siswa->nama ?? ''}}" name="nama" id="" class="form-control" placeholder="Masukkan nama siswa">
-                      
-                          @error('nama')
+                          {!! Form::label('agama', 'Agama') !!}
+                          {!! Form::select('agama', $daftar_agama, old('agama'), ['placeholder' => 'Pilih agama','class' => 'form-control']) !!}
+                        
+                          @error('agama')
                           <span class="text-danger">
                               {{$message}}
                           </span>
@@ -68,45 +114,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="tempat_lahir">Tempat Lahir</label>
-                            <input type="text" value="{{old('tempat_lahir') ?? $siswa->tempat_lahir ?? ''}}" name="tempat_lahir" id="" class="form-control" placeholder="Masukkan tempat lahir siswa">
-                        
-                            @error('tempat_lahir')
-                            <span class="text-danger">
-                                {{$message}}
-                            </span>
-                            @enderror
-                          </div>
-                        
-                          <div class="form-group">
-                            <label for="tanggal_lahir">Tanggal Lahir</label>
-                            <input type="date" value="{{old('tanggal_lahir') ?? $siswa->tanggal_lahir ?? ''}}" name="tanggal_lahir" id="" class="form-control">
-                        
-                            @error('tanggal_lahir')
-                            <span class="text-danger">
-                                {{$message}}
-                            </span>
-                            @enderror
-                          </div>
-                        
-
-                      <div class="form-group">
-                          <label for="jenis_kelamin">Jenis Kelamin</label>
-                          <select name="jenis_kelamin" id="" class="form-control">
-                              @foreach($jenis_kelamin as $jk)
-                                <option value="{{$jk}}" @if(isset($siswa)) {{ $jk == $siswa->jenis_kelamin  ? 'selected' : '' }} @endif>{{$jk}}</option>
-                                @endforeach
-                          </select>
-                          @error('jenis_kelamin')
-                          <span class="text-danger">
-                              {{$message}}
-                          </span>
-                          @enderror
-                        </div>
-
-                      <div class="form-group">
                           <label for="nomor_hp">Nomor Telepon</label>
-                          <input type="text" value="{{old('nomor_hp') ?? $siswa->nomor_hp ?? ''}}" name="nomor_hp" id="" class="form-control" placeholder="Masukkan nomor handphone">
+                          {!! Form::label('nomor_hp','Nomor Telepon') !!}
+                          {!! Form::text('nomor_hp', old('nomor_hp'), ['class' => 'form-control', 'placeholder'=>'Masukkan nomor telepon']) !!}
                           
                           @error('nomor_hp')
                           <span class="text-danger">
@@ -115,58 +125,202 @@
                           @enderror
                         </div>
 
+                      <div class="form-group">
+                        {!! Form::label('email', 'Email') !!}
+
+                        {!! Form::email('email', old('email'), ['class' => 'form-control' , 'placeholder' => 'Masukkan email siswa']) !!}
+                           
+                          @error('email')
+                          <span class="text-danger">
+                              {{$message}}
+                          </span>
+                          @enderror
+
+                        </div>
+
                         <div class="form-group">
-                            <label for="agama">Agama</label>
-                            <select name="agama" id="" class="form-control">
-                                @foreach($daftar_agama as $agama)
-                                  <option value="{{$agama}}" @if(isset($siswa)) {{ $siswa->agama == $agama ? 'selected' : '' }} @endif>{{$agama}}</option>
-                                  @endforeach
-                            </select>
+                            {!! Form::label('password', 'Password') !!}
+
+							{!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Ketik jika ingin diubah']) !!}
+                           
+                          @error('password')
+                          <span class="text-danger">
+                              {{$message}}
+                          </span>
+                          @enderror
+
+                        </div>
+
+                        <div class="form-group">
+                          {!! Form::label('kelas_id', 'Kelas') !!}
+
+                          {!! Form::select('kelas_id', $daftar_kelas, old('kelas_id'), ['placeholder' => '--Pilih kelas--', 'class' => 'form-control']) !!}
+                          
+                          @error('kelas_id')
+                          <span class="text-danger">
+                              {{$message}}
+                          </span>
+                          @enderror
+                        </div>
+
+                    <div class="form-group">
+                        {!! Form::label('alamat', 'Alamat') !!}
+                        {!! Form::textarea('alamat', old('alamat'), ['class' => 'form-control']) !!}
+                        
+                        @error('alamat')
+                        <span class="text-danger">
+                            {{$message}}
+                        </span>
+                        @enderror
+                        
+                    </div>
+                    
+                        <button type="button" class="btn btn-md btn-secondary" onclick="window.history.back()">Kembali</button>
+                      <input type="submit" value="{{$button}}" class="btn btn-md btn-info">
+                      
+                      {!! Form::close() !!}
+
+                    @else
+
+                    {!! Form::open(['route' => $url]) !!}
+                        <div class="form-group">
+                            {!! Form::label('nis', 'NIS') !!}
+                            {!! Form::text('nis', old('nis'),['class' => 'form-control','placeholder' => 'Masukkan NIS siswa','maxlength' => '12']) !!}
+                             
+                            @error('nis')
+                            <span class="text-danger">
+                                {{$message}}
+                            </span>
+                            @enderror
+    
+                          </div>
+    
+                        <div class="form-group">
+                            <label for="nama">Nama Siswa</label>
+                            {!! Form::label('nama', 'Nama Siswa') !!}
+                            {!! Form::text('nama', old('nama'),['class' => 'form-control', 'placeholder' => 'Masukkan nama siswa']) !!}
+                        
+                            @error('nama')
+                            <span class="text-danger">
+                                {{$message}}
+                            </span>
+                            @enderror
+                          </div>
+    
+                          <div class="form-group">
+                              {!! Form::label('tempat_lahir', 'Tempat Lahir') !!}
+                              {!! Form::text('tempat_lahir', old('tempat_lahir'), ['class' => 'form-control','placeholder' => 'Masukkan tempat lahir']) !!}
+                          
+                              @error('tempat_lahir')
+                              <span class="text-danger">
+                                  {{$message}}
+                              </span>
+                              @enderror
+    
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="tanggal_lahir">Tanggal Lahir</label>
+                              {!! Form::label('tanggal_lahir','Tanggal Lahir') !!}
+                              {!! Form::date('tanggal_lahir',old('tanggal_lahir'),['class' => 'form-control']) !!}
+                          
+                              @error('tanggal_lahir')
+                              <span class="text-danger">
+                                  {{$message}}
+                              </span>
+                              @enderror
+                            </div>
+                          
+    
+                        <div class="form-group">
+                          {!! Form::label('jenis_kelamin', 'Jenis Kelamin') !!}
+                          {!! Form::select('jenis_kelamin', $jenis_kelamin, old('jenis_kelamin'),['class'=> 'form-control','placeholder' => '--Pilih jenis kelamin--']) !!}
+                           
                             @error('jenis_kelamin')
                             <span class="text-danger">
                                 {{$message}}
                             </span>
                             @enderror
                           </div>
-
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" value="{{old('email') ?? $siswa->email ?? ''}}" name="email" id="" class="form-control @error('email') {{'is-invalid'}} @enderror" placeholder="Masukkan NIP guru">
-                             
-                            @error('email')
-                            <span class="text-danger">
-                                {{$message}}
-                            </span>
-                            @enderror
-  
-                          </div>
-
+    
                           <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" name="password" id="" class="form-control @error('password') {{'is-invalid'}} @enderror" @if(isset($siswa))placeholder="Ketik jika ingin diubah"@endif>
-                             
-                            @error('password')
+                              {!! Form::label('agama', 'Agama') !!}
+                              {!! Form::select('agama', $daftar_agama, old('agama'), ['placeholder' => 'Pilih agama','class' => 'form-control']) !!}
+                            
+                              @error('agama')
+                              <span class="text-danger">
+                                  {{$message}}
+                              </span>
+                              @enderror
+                            </div>
+    
+                            <div class="form-group">
+                              <label for="nomor_hp">Nomor Telepon</label>
+                              {!! Form::label('nomor_hp','Nomor Telepon') !!}
+                              {!! Form::text('nomor_hp',old('nomor_hp'),['class' => 'form-control','placeholder'=>'Masukkan nomor telepon']) !!}
+                              
+                              @error('nomor_hp')
+                              <span class="text-danger">
+                                  {{$message}}
+                              </span>
+                              @enderror
+                            </div>
+    
+                          <div class="form-group">
+                            {!! Form::label('email', 'Email') !!}
+    
+                            {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}
+                               
+                              @error('email')
+                              <span class="text-danger">
+                                  {{$message}}
+                              </span>
+                              @enderror
+    
+                            </div>
+    
+                            <div class="form-group">
+                                {!! Form::label('password', 'Password') !!}
+    
+                                {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Ketik jika ingin diubah']) !!}
+                               
+                              @error('password')
+                              <span class="text-danger">
+                                  {{$message}}
+                              </span>
+                              @enderror
+    
+                            </div>
+    
+                            <div class="form-group">
+                              {!! Form::label('kelas_id', 'Kelas') !!}
+    
+                              {!! Form::select('kelas_id', $daftar_kelas, old('kelas_id'), ['placeholder' => '--Pilih kelas--', 'class' => 'form-control']) !!}
+                              
+                              @error('kelas_id')
+                              <span class="text-danger">
+                                  {{$message}}
+                              </span>
+                              @enderror
+                            </div>
+    
+                        <div class="form-group">
+                            {!! Form::label('alamat', 'Alamat') !!}
+                            {!! Form::textarea('alamat', old('alamat'), ['class' => 'form-control']) !!}
+                            
+                            @error('alamat')
                             <span class="text-danger">
                                 {{$message}}
                             </span>
                             @enderror
-  
-                          </div>
-
-                      <div class="form-group">
-                          <label for="alamat">Alamat</label>
-                          <textarea name="alamat" id="" cols="30" rows="10" class="form-control" placeholder="Masukkan alamat lengkap">{{old('alamat') ?? $siswa->alamat ?? ''}}</textarea>
                         
-                          @error('alamat')
-                          <span class="text-danger">
-                              {{$message}}
-                          </span>
-                          @enderror
-                      
-                        </div>
-  
-                      <input type="submit" value="{{$button}}" class="btn btn-md btn-info">
-                    </form>
+                            <button type="button" class="btn btn-md btn-secondary" onclick="window.history.back()">Kembali</button>
+                          <input type="submit" value="{{$button}}" class="btn btn-md btn-info">
+                 
+                          {!! Form::close() !!}
+                   
+                    @endif 
+
                 </div>
             </div>
         </div>

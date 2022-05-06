@@ -2,8 +2,16 @@
 
 namespace App\Http\Controllers\Siswa;
 
-use App\Http\Controllers\Controller;
+use Str;
+use Auth;
+use App\User;
+use App\Kelas;
+use Validator;
+use App\BKSiswa;
+use App\LayananBK;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Http\Controllers\Controller;
 
 class BKPribadiController extends Controller
 {
@@ -13,8 +21,10 @@ class BKPribadiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('siswa.bimbingan.pribadi.index');
+    {   
+        $data_bk = LayananBK::where('jenis','pribadi')->get();
+
+        return view('siswa.bimbingan.pribadi.index',compact('data_bk'));
     }
 
     /**
@@ -39,7 +49,41 @@ class BKPribadiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        $rules = [
+            'judul_bk' => 'required',
+            'pokok_pembahasan' => 'required'
+        ];
+
+        $message = [
+            'judul_bk.required' => 'Judul harus dibuat',
+            'pokok_pembahasan.required' => 'Pokok pembahasan harus dibuat',
+        ];
+
+        $validates = Validator::make($input, $rules, $message)->validate();
+
+        $sekarang = Carbon::now();
+
+        $nomorBK = 'BK/'.$sekarang->format('ymd').'/'.'PRIBADI/'.Str::upper(Str::random(4));
+
+
+        $data_bk = new LayananBK;
+        $data_bk->judul_bk = $request->judul_bk;
+        $data_bk->nomor_bk = $request->nomor_bk = $nomorBK;
+        $data_bk->pokok_pembahasan = $request->pokok_pembahasan;
+        $data_bk->status = 'belum di tanggapi';
+        $data_bk->jenis = 'pribadi';
+        $data_bk->save();
+
+        $data_siswa = new BKSiswa;
+        $data_siswa->nama_siswa = Auth::user()->nama;
+        $data_siswa->kelas = Auth::user()->pilihan_kelas->nama;
+        $data_siswa->bk_siswa_id = $data_bk->id;
+        $data_siswa->save();
+
+        return redirect()->route('siswa.bimbingan.pribadi')
+        ->with('message',__('pesan.create',['module' => $data_bk->nomor_bk]));
     }
 
     /**

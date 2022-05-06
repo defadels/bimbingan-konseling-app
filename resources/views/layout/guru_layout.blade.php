@@ -22,7 +22,11 @@
     <link rel="stylesheet" type="text/css" href="{{asset('matrix/assets/extra-libs/multicheck/multicheck.css')}}">
     <link href="{{asset('matrix/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet">
     <link href="{{asset('matrix/dist/css/style.min.css')}}" rel="stylesheet">
-  
+
+    <!-- Select2 -->
+    <script src="{{asset('matrix/dist/js/select2/css/select2.min.css')}}"></script>
+    <script src="{{asset('matrix/dist/js/select2/css/select2-bootstrap4.css')}}"></script>
+
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
@@ -107,13 +111,14 @@
     <script src="{{asset('matrix/assets/extra-libs/multicheck/datatable-checkbox-init.js')}}"></script>
     <script src="{{asset('matrix/assets/extra-libs/multicheck/jquery.multicheck.js')}}"></script>
     <script src="{{asset('matrix/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
+    <script src="{{asset('matrix/dist/js/select2/js/select2.min.js')}}"></script>
     <script>
         /****************************************
          *       Basic Table                   *
          ****************************************/
         $('#zero_config').DataTable();
     </script>
-
+@yield('page_script')
 </body>
 
 </html>

@@ -4,6 +4,12 @@ namespace App\Http\Controllers\Siswa;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\LayananBK;
+use Auth;
+use App\User;
+use App\Kelas;
+use Str;
+use Validator;
 
 class BKKelompokController extends Controller
 {
@@ -14,7 +20,9 @@ class BKKelompokController extends Controller
      */
     public function index()
     {
-        return view('siswa.bimbingan.kelompok.index');
+        $data_bk = LayananBK::get();
+
+        return view('siswa.bimbingan.kelompok.index',compact('data_bk'));
     }
 
     /**
@@ -85,5 +93,26 @@ class BKKelompokController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function cari_produk(Request $request) {
+        $selain = explode(',', urldecode($request->selain));
+        $key = $request->cari;
+
+        if($request->has("cari") && $request->cari != "")
+        {
+            $daftar_siswa = User::where('nama', 'like', '%'. $request->cari . '%')->whereNotIn('id', $selain)->paginate(5);
+        } else {
+            $daftar_siswa = User::whereNotIn('id', $selain)->paginate(5);
+        }
+
+        $results = array(
+            "results" => $daftar_siswa->toArray()['data'],
+            "pagination" => array(
+                "more" => $daftar_siswa->hasMorePages()
+            )
+        );
+
+        return response()->json($results);
     }
 }

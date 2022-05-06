@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Siswa;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\LayananBK;
+use App\User;
+use App\Kelas;
+use Validator;
+use Str;
 
 class BKKonselingKelompokController extends Controller
 {
@@ -14,7 +19,9 @@ class BKKonselingKelompokController extends Controller
      */
     public function index()
     {
-        return view('siswa.bimbingan.konseling_kelompok.index');
+        $data_bk = LayananBK::get();
+
+        return view('siswa.bimbingan.konseling_kelompok.index',compact('data_bk'));
     }
 
     /**

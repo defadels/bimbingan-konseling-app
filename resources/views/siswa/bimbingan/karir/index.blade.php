@@ -36,6 +36,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Bimbingan Konseling Karir</h5>
                     <div class="table-responsive">
+                     @if(count($data_bk) > 0)   
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
@@ -47,21 +48,26 @@
                                 </tr>
                             </thead>
                             <tbody>
+                              @foreach($data_bk as $data)  
                                 <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td><span class="badge bg-success">Sudah Ditanggapi</span></td>
+                                    <td>{{$data->nomor_bk}}</td>
+                                    <td>{{$data->judul_bk}}</td>
+                                    <td>{{trans(ucfirst($data->jenis))}}</td>
+                                    <td><span class="@if($data->status == 'belum di tanggapi'){{'badge bg-danger text-white'}} @else {{'badge bg-success'}} @endif">{{trans(ucfirst($data->status))}}</span></td>
                                     <td>
                                         <a href="" class="btn btn-md btn-info">
                                             <i class="fas fa-eye"></i> Lihat
                                         </a>
                                     </td>
                                 </tr>
-                               
+                                @endforeach
                             </tbody>
                            
                         </table>
+
+                        @else
+                            <h2 class="p-3 text-center">Data Bimbingan Konseling Karir Kosong</h2>
+                        @endif
                     </div>
 
                 </div>

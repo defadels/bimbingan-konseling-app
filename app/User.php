@@ -40,4 +40,8 @@ class User extends Authenticatable
     public function pilihan_kelas(){
         return $this->belongsTo('App\Kelas', 'kelas_id')->withDefault();
     }
+
+    public function tanggapan_guru(){
+        return $this->hasMany('App\LayananBK', 'tanggapan_guru_id');
+    }
 }

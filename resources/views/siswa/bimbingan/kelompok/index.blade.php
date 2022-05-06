@@ -36,6 +36,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Konseling Kelompok</h5>
                     <div class="table-responsive">
+                      @if(count($data_bk) > 0)  
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
@@ -47,6 +48,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                               @foreach($data_bk as $data) 
                                 <tr>
                                     <td>Tiger Nixon</td>
                                     <td>System Architect</td>
@@ -58,10 +60,14 @@
                                         </a>
                                     </td>
                                 </tr>
-                               
+                               @endforeach
                             </tbody>
                            
                         </table>
+
+                        @else 
+                            <h2 class="text-center p-3">Data Konseling Kelompok Kosong</h2>
+                        @endif
                     </div>
 
                 </div>

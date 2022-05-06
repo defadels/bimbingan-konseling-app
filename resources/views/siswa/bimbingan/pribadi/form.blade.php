@@ -35,14 +35,31 @@
                 <div class="card-body">
                     <h5 class="card-title">Konseling Pribadi</h5>
                     <hr>
-                    <form action="">
+                    <form action="{{route($url)}}" method="post">
+                        @csrf
                         <div class="form-group">
-                            <label for="judul">Judul</label>
-                            <input type="text" name="judul" id="judul" class="form-control" placeholder="Judul bimbingan">
+                            <label for="">Nama Siswa</label>
+                            <p>{{Auth::user()->nama}} - [Kelas {{Auth::user()->pilihan_kelas->nama}}]</p>
                         </div>
                         <div class="form-group">
-                            <label for="judul">Pokok Pembahasan</label>
-                            <textarea name="judul" cols="30" rows="10" id="judul" placeholder="Tuliskan pokok pembahasan" class="form-control"></textarea>
+                            <label for="judul_bk">Judul</label>
+                            <input type="text" name="judul_bk" id="judul_bk" class="form-control @error('judul_bk') {{'is-invalid'}} @enderror" placeholder="Judul bimbingan">
+                            
+                            @error('judul_bk')
+                            <span class="text-danger">
+                                {{$message}}
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="pokok_pembahasan">Pokok Pembahasan</label>
+                            <textarea name="pokok_pembahasan" cols="30" rows="10" id="pokok_pembahasan" placeholder="Tuliskan pokok pembahasan" class="form-control @error('pokok_pembahasan') {{'is-invalid'}} @enderror"></textarea>
+                        
+                            @error('pokok_pembahasan')
+                            <span class="text-danger">
+                                {{$message}}
+                            </span>
+                            @enderror
                         </div>
 
                         <button type="button" class="btn btn-md btn-secondary" onclick="window.history.back()">Kembali</button>

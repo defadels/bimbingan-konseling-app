@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->integer('count')->nullable();
             $table->timestamps();
         });
-
+        
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama')->nullable();
@@ -43,6 +43,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        
     }
 
     /**

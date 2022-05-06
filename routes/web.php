@@ -59,7 +59,8 @@ Route::prefix('siswa')->name('siswa.')->middleware('auth','tolakselainsiswa')->n
     Route::get('bimbingan-konseling/kelompok','BKKelompokController@index')->name('bimbingan.kelompok');
     Route::get('bimbingan-konseling/kelompok/create', 'BKKelompokController@create')->name('bimbingan.kelompok.create');
     Route::post('bimbingan-konseling/kelompok', 'BKKelompokController@store')->name('bimbingan.kelompok.store');
-    Route::get('bimbingan-konseling/kelompok/daftar_produk','BKKelompokController@cari_produk')->name('bimbingan.kelompok.daftar_produk');
+    Route::get('bimbingan-konseling/kelompok/siswa/cari','BKKelompokController@cari_siswa')->name('bimbingan.kelompok.cari.siswa');
+    Route::get('bimbingan-konseling/kelompok/kelas/cari', 'BKKelompokController@json_daftar_kelas')->name('bimbingan.kelompok.kelas');
 
     Route::get('bimbingan-konseling/pribadi','BKPribadiController@index')->name('bimbingan.pribadi');
     Route::get('bimbingan-konseling/pribadi/create', 'BKPribadiController@create')->name('bimbingan.pribadi.create');

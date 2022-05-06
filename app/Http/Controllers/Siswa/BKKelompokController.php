@@ -95,7 +95,7 @@ class BKKelompokController extends Controller
         //
     }
 
-    public function cari_produk(Request $request) {
+    public function cari_siswa(Request $request) {
         $selain = explode(',', urldecode($request->selain));
         $key = $request->cari;
 
@@ -115,4 +115,25 @@ class BKKelompokController extends Controller
 
         return response()->json($results);
     }
+
+    public function json_daftar_kelas(Request $req) {
+
+        $id_kelas = $req->kelas_id;
+        $alamat = User::findOrFail($id_kelas)->pilihan_kelas()->get(); 
+        
+        $hasil = array(
+            'result' => $kelas
+        );
+      
+       return response()->json($hasil);
+    }
+
+    public function kelas(Request $request){
+        $id_kelas = $request->id_kelas;
+
+        $kelas = User::where('id', $id_kelas)->value('nama');
+
+        return response()->json($kelas);
+    }
+
 }

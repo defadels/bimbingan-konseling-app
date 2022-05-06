@@ -48,8 +48,8 @@
 								<table class="table" id="tabel_pesanan">
 									<thead class="thead-dark">
 										<tr>
-											<th scope="col">Nama Siswa</th>
-											<th scope="col" class="text-right">Kelas</th>
+											<th scope="col" width="30%">Nama</th>
+											<th scope="col" width="10%" class="text-center">Kelas</th>
 											<th width="1%"></th>
 										</tr>
 									</thead>
@@ -93,7 +93,7 @@
 @endsection
 
 @section('page_script')
-    <script>
+    <script>		
 		$('.select2').select2({
 			theme: 'bootstrap4',
 			width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
@@ -102,28 +102,147 @@
 			
 		});
 
-		$(document).ready(function() {
-    cari();
-});
+		$('#cari-pelanggan').select2({
+			theme: 'bootstrap4',
+			width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+			placeholder: $(this).data('placeholder'),
+			allowClear: Boolean($(this).data('allow-clear')),
+			
+			ajax: {
+			url: '{{route("siswa.bimbingan.kelompok.cari.siswa")}}',
+			dataType: 'json',
+			delay: 250,
+			data: function (params) {
+				return {
+					cari: params.term,
+					page: params.page || 1
+				};
+				},
+			processResults: function (data) {
+				return {
+				results:  $.map(data.results, function (item) {
+					return {
+					text: item.nama +" ["+item.email+"]",
+					id: item.id,
+					}
+				}),
+          pagination: data.pagination
+        };
+      },
+      cache: true
+    },
 
+    templateSelection: formatRepoSelection
+
+		});
+
+		function formatRepoSelection (repo) {
+
+		return repo.text;
+		}
+
+		$("#cari-pelanggan").change(function(){
+       		var id_pelanggan = $(this).val(); 
+	   		var $el = $("#label_alamat");
+			var $kepada = $('#tujuan_nama');
+			var $alamat_tujuan = $('#tujuan_alamat');
+			var $tujuan_nomor_hp = $('#tujuan_nomor_hp');
+
+			$el.empty(); // remove old options
+			$kepada.val('');
+			$alamat_tujuan.empty();
+			$tujuan_nomor_hp.val('');
+
+       $.ajax({
+          type: "GET",
+          dataType: "json",
+          url: '{{ route("siswa.bimbingan.kelompok.kelas")}}?kelas_id='+id_kelas,
+          success: function(msg){
+
+			console.log(msg);
+
+			data_global = msg;
+
+				var status = ["ya"];
+				var filteredArray = msg.result.filter(function(df){
+
+				return status.indexOf(df.is_default) > -1;
+				});
+
+				filteredArray = filteredArray[0];
+
+				console.log(filteredArray[0]);
+
+
+				$kepada.val(filteredArray.nama_penerima);
+				$alamat_tujuan.html(filteredArray.alamat_penerima);
+				$tujuan_nomor_hp.val(filteredArray.nomor_hp_penerima);
+
+				// $el.empty(); // remove old options
+				$.each(msg.result, function(key, value) {
+					$el.append($("<option></option>")
+     				.attr("value", value.id).text(value.label));
+					 console.log(value.id);
+					 console.log(value.label);
+				
+				});                                                     
+          }
+       });
+	   
+	   
+     }); 
+	
+
+	 function get_alamat(id_alamat) {
+		 var hasil = 0;
+		 if(isNaN(id_alamat)){
+			 return 0;
+		 }
+		 $.ajax({
+			url: '{{route("siswa.bimbingan.kelompok.kelas")}}?id='+id_alamat,
+			success : function (msg) {
+				hasil = msg;
+			},
+			async : false
+		 });
+		 return hasil;
+	 }
+
+	 $("#label_alamat").change(function() {
+		 
+		 var id = $('#label_alamat').val();
+
+		 var filteredArray = msg.result.filter(function(df){
+
+		return status.indexOf(df.is_default) > -1;
+		});
+
+		filteredArray = filteredArray[0];
+
+		console.log(filteredArray[0]);
+
+		 var alamat = get_alamat(id);
+
+		 console.log(alamat);
+
+		 if (alamat.is_default === "ya") {
+			$('#tujuan_nama').val(alamat.result.nama_penerima);
+			$('#tujuan_nomor_hp').val(alamat.result.nomor_hp_penerima);
+			$('#alamat_tujuan').html(alamat.result.alamat_penerima);
+		 } else {
+			$('#tujuan_nama').val();
+			$('#tujuan_nomor_hp').val("");
+			$('#alamat_tujuan').html("");
+		 }
+	 });
 
 // funciton cari produk
 function cari(){
 
-
-$("form").submit(function (event) {
-		  $('.nominal').unmask();
-  });
-
-$(".touchspin").TouchSpin({
-  buttondown_class: "btn btn-primary",
-  buttonup_class: "btn btn-primary",
-});
-
 $('.cariproduk').select2({
-  placeholder: 'Cari dan Pilih Produk...',
+  placeholder: 'Cari Nama Siswa...',
   ajax: {
-	url: '{{route("siswa.bimbingan.kelompok.daftar_produk")}}',
+	url: '{{route("siswa.bimbingan.kelompok.cari.siswa")}}',
 	dataType: 'json',
 	delay: 250,
 	data: function (params) {
@@ -153,18 +272,16 @@ $('.cariproduk').select2({
 
 }
 
-
 // function tabel pesanan
 
-function hitung(){
+	function hitung(){
 		// var x = $(".cariproduk")
 		//            .map(function(){return $(this).val();}).get().join(',');
 		//  console.log(x);
 			var total_belanja = 0;
 
 		$('#tabel_pesanan > tbody  > tr').each(function(index) {
-		var produk_id = $('.cariproduk').eq(index).val();
-		var pelanggan_id = 1;
+		var siswa_id = $('.cariproduk').eq(index).val();
 		var qty = $('.kuantitas').eq(index).val();
 		var harga = get_harga(produk_id,pelanggan_id);
 		$('.harga_satuan').eq(index).html(numeral(harga).format('0,0'));
@@ -177,25 +294,33 @@ function hitung(){
 
 		});
 
+		$('#total_belanja').html(numeral(total_belanja).format('0,0'));
+
+		var ongkir = $('#ongkos_kirim').cleanVal();
+		var biaya_tambahan = $('#biaya_tambahan').cleanVal();
+		var biaya_packing = $('#biaya_packing').cleanVal();
+		var diskon = $('#diskon').cleanVal();
+		var grand_total =  parseInt(ongkir) + parseInt(biaya_tambahan)+ parseInt(biaya_packing) - parseInt(diskon) + parseInt(total_belanja);
+
+		$('#grand_total').val(numeral(grand_total).format('0,0'));
+
 	}
 
 	var produk = {
       nama : "Minyak goreng",
-      kelas : "",
- 
+      kelas_id : 2,
   };
 
 
   function hapus_baris(e){
 		$(e).closest('tr').remove();
-		hitung();
 	}
 
 	 function tambah_baris(produk){
 
 		var baris = "<tr>"
-				+"<td><select class='form-control cariproduk' name='produk_id[]'></select></td>"
-				+"<td class='harga_satuan text-right'>"+produk.kelas+"</td>"
+				+"<td><select class='form-control cariproduk' name='siswa_id[]'></select></td>"
+				+"<td class='sub_total text-right'>"+produk.kelas_id+"</td>"
 				+"<td><a onclick='hapus_baris(this)' class='btn btn-icon btn-outline-warning btn-sm waves-effect waves-light' href='javascript:void(0)'><i class='fadeIn animated fas fa-trash-alt'></i></a></td>"
 
 				+"</tr>";

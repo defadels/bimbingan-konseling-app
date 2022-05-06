@@ -14,13 +14,18 @@
     <meta name="robots" content="noindex,nofollow">
     <title>@yield('title')</title>
      <!-- Bootstrap CSS -->
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-
-    <!-- Favicon icon -->
+     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous"> --}}
+     <link href="{{asset('matrix/src/css/bootstrap.min.css')}}" rel="stylesheet">
+    
+    
+     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('matrix/assets/images/favicon1.png')}}">
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{asset('matrix/assets/extra-libs/multicheck/multicheck.css')}}">
     <link href="{{asset('matrix/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet">
+    <link href="{{asset('matrix/dist/css/style.min.css')}}" rel="stylesheet">
+    
+    
     <link href="{{asset('matrix/dist/css/style.min.css')}}" rel="stylesheet">
 
     <!-- Select2 -->

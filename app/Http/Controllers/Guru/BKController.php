@@ -4,6 +4,13 @@ namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\LayananBK;
+use App\User;
+use App\Kelas;
+use App\BKSiswa;
+use Auth;
+use Validator;
+use Carbon\Carbon;
 
 class BKController extends Controller
 {
@@ -14,7 +21,9 @@ class BKController extends Controller
      */
     public function index()
     {
-        return view('guru.bimbingan.masuk.index');
+        $data_bk = LayananBK::where('status','belum di tanggapi')->get();
+        
+        return view('guru.bimbingan.masuk.index', compact('data_bk'));
     }
     /**
      * Show the form for creating a new resource.

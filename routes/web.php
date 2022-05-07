@@ -32,6 +32,7 @@ Route::prefix('guru')->name('guru.')->middleware('auth','tolakselainguru')->name
     Route::post('guru','GuruController@store')->name('guru.store');
     Route::get('guru/{guru}','GuruController@edit')->name('guru.edit');
     Route::put('guru/{guru}','GuruController@update')->name('guru.update');
+    Route::get('guru/lihat/{guru}','GuruController@show')->name('guru.show');
     Route::delete('guru/{guru}','GuruController@destroy')->name('guru.destroy');
 
     Route::get('kelas','KelasController@index')->name('kelas');

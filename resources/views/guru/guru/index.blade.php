@@ -55,7 +55,7 @@
                                      <span class="badge bg-success text-white">   
                                         {{ucfirst(trans($guru->status))}}</span></td>
                                     <td>
-                                        <a href="" title="Lihat" class="btn btn-md btn-info">
+                                        <a href="{{route('guru.guru.show',$guru->id)}}" title="Lihat" class="btn btn-md btn-info">
                                             <i class="fas fa-eye"></i> Lihat
                                         </a>
                                         <a href="{{route('guru.guru.edit',$guru->id)}}" title="Edit" class="btn btn-md btn-success text-white">

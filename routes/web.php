@@ -40,6 +40,7 @@ Route::prefix('guru')->name('guru.')->middleware('auth','tolakselainguru')->name
     Route::post('kelas','KelasController@store')->name('kelas.store');
     Route::get('kelas/{kelas}','KelasController@edit')->name('kelas.edit');
     Route::put('kelas/{kelas}','KelasController@update')->name('kelas.update');
+    Route::get('kelas/lihat/{kelas}', 'KelasController@show')->name('kelas.show');
     Route::delete('kelas/{kelas}','KelasController@destroy')->name('kelas.destroy');
 
     Route::get('bimbingan-konseling/masuk','BKController@index')->name('bimbingan.masuk');

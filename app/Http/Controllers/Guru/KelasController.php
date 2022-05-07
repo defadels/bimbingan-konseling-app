@@ -73,9 +73,10 @@ class KelasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(Kelas $kelas)
+    {   
+        $data_siswa = User::where('kelas_id',$kelas->id)->get();
+        return view('guru.kelas.show',compact('kelas','data_siswa'));
     }
 
     /**

@@ -52,7 +52,7 @@
                                     <td>{{$kelas->keterangan}}</td>
                                     
                                     <td>
-                                        <a href="" title="Lihat" class="btn btn-md btn-info">
+                                        <a href="{{route('guru.kelas.show',$kelas->id)}}" title="Lihat" class="btn btn-md btn-info">
                                             <i class="fas fa-eye"></i> Lihat
                                         </a>
                                         <a href="{{route('guru.kelas.edit',$kelas->id)}}" title="Edit" class="btn btn-md btn-success text-white">

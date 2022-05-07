@@ -25,6 +25,7 @@ Route::prefix('guru')->name('guru.')->middleware('auth','tolakselainguru')->name
     Route::post('siswa','SiswaController@store')->name('siswa.store');
     Route::get('siswa/{siswa}','SiswaController@edit')->name('siswa.edit');
     Route::put('siswa/{siswa}','SiswaController@update')->name('siswa.update');
+    Route::get('siswa/lihat/{siswa}','SiswaController@show')->name('siswa.show');
     Route::delete('siswa/{siswa}','SiswaController@destroy')->name('siswa.destroy');
 
     Route::get('guru','GuruController@index')->name('guru');

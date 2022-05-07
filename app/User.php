@@ -44,4 +44,8 @@ class User extends Authenticatable
     public function tanggapan_guru(){
         return $this->hasMany('App\LayananBK', 'tanggapan_guru_id');
     }
+    
+    public function dibuat_oleh(){
+        return $this->hasMany('App\LayananBK', 'dibuat_oleh_id');
+    }
 }

@@ -22,7 +22,8 @@ class BKPribadiController extends Controller
      */
     public function index()
     {   
-        $data_bk = LayananBK::where('jenis','pribadi')->get();
+        $id_user = Auth::user()->id;
+        $data_bk = LayananBK::where('dibuat_oleh_id', $id_user)->where('jenis','Konseling Pribadi')->get();
 
         return view('siswa.bimbingan.pribadi.index',compact('data_bk'));
     }
@@ -72,8 +73,9 @@ class BKPribadiController extends Controller
         $data_bk->judul_bk = $request->judul_bk;
         $data_bk->nomor_bk = $request->nomor_bk = $nomorBK;
         $data_bk->pokok_pembahasan = $request->pokok_pembahasan;
-        $data_bk->status = 'belum di tanggapi';
-        $data_bk->jenis = 'pribadi';
+        $data_bk->dibuat_oleh_id = Auth::user()->id;
+        $data_bk->status = 'Belum Ditanggapi';
+        $data_bk->jenis = 'Konseling Pribadi';
         $data_bk->save();
 
         $data_siswa = new BKSiswa;

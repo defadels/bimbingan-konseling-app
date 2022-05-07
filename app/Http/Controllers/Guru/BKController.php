@@ -21,7 +21,7 @@ class BKController extends Controller
      */
     public function index()
     {
-        $data_bk = LayananBK::where('status','belum di tanggapi')->get();
+        $data_bk = LayananBK::where('status','Belum Ditanggapi')->get();
         
         return view('guru.bimbingan.masuk.index', compact('data_bk'));
     }
@@ -52,9 +52,9 @@ class BKController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(LayananBK $bk)
     {
-        //
+        return view('guru.bimbingan.masuk.show',compact('bk'));
     }
 
     /**
@@ -63,9 +63,13 @@ class BKController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit(LayananBK $bk)
+    {   
+        $url = 'guru.bimbingan.masuk.update';
+
+        $button = 'Kirim Tanggapan';
+
+        return view('guru.bimbingan.masuk.form',compact('bk','url','button'));
     }
 
     /**
@@ -75,9 +79,31 @@ class BKController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, LayananBK $bk)
     {
-        //
+        $input = $request->all();
+
+        $rules = [
+            'judul_tanggapan' => 'required',
+            'tanggapan'     => 'required',
+        ];
+
+        $message = [
+            'judul_tanggapan.required' => 'Wajib diisi',
+            'tanggapan.required' => 'Wajib diisi',
+        ];
+
+        $validates = Validator::make($input, $rules, $message)->validate();
+
+        $bk->judul_tanggapan = $request->judul_tanggapan;
+        $bk->tanggapan = $request->tanggapan;
+        $bk->status = 'Sudah Ditanggapi';
+        $bk->tanggapan_guru_id = Auth::user()->id;
+
+        $bk->save();
+
+        return redirect()->route('guru.bimbingan.ditanggapi')
+        ->with('message',__('pesan.update',['module'=>$bk->nomor_bk]));
     }
 
     /**

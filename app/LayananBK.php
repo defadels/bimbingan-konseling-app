@@ -17,4 +17,8 @@ class LayananBK extends Model
     public function ditanggapi_oleh(){
         return $this->belongsTo('App\User','tanggapan_guru_id')->withDefault();
     }
+    
+    public function dibuat_oleh(){
+        return $this->belongsTo('App\User','dibuat_oleh_id')->withDefault();
+    }
 }

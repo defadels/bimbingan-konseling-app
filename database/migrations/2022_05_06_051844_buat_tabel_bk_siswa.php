@@ -21,10 +21,12 @@ class BuatTabelBkSiswa extends Migration
             $table->text('pokok_pembahasan')->nullable();
             $table->string('judul_tanggapan')->nullable();
             $table->text('tanggapan')->nullable();
-            $table->enum('status',['sudah ditanggapi','belum di tanggapi']);
-            $table->enum('jenis',['pribadi','kelompok','karir','konseling_kelompok']);
+            $table->enum('status',['Sudah Ditanggapi','Belum Ditanggapi']);
+            $table->enum('jenis',['Konseling Pribadi','Konseling Kelompok','Bimbingan Konseling Karir','Bimbingan Konseling Kelompok']);
             $table->unsignedBigInteger('tanggapan_guru_id')->nullable();
             $table->foreign('tanggapan_guru_id')->references('id')->on('users')->ondelete('cascade');
+            $table->unsignedBigInteger('dibuat_oleh_id')->nullable();
+            $table->foreign('dibuat_oleh_id')->references('id')->on('users');
             $table->timestamps();
         });
 

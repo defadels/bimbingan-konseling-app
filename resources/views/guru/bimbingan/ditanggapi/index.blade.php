@@ -39,7 +39,7 @@
                             <thead>
                                 <tr>
                                     <th>Nomor BK</th>
-                                    <th>Nama Siswa</th>
+                                    <th>Ditanggapi Oleh</th>
                                     <th>Jenis BK</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -48,14 +48,11 @@
                               @foreach($data_bk as $bk)  
                                 <tr>
                                     <td>{{$bk->nomor_bk}}</td>
-                                    <td>{{$bk->daftar_siswa()->nama}}</td>
+                                    <td>{{$bk->ditanggapi_oleh->nama}}</td>
                                     <td>{{trans(ucfirst($bk->jenis))}}</td>
-                                    <td> <a href="" title="Lihat" class="btn btn-md btn-info">
+                                    <td> <a href="{{route('guru.bimbingan.ditanggapi.show',$bk->id)}}" title="Lihat" class="btn btn-md btn-info">
                                         <i class="fas fa-eye"></i> Lihat
                                     </a>
-                                    <a href="" title="Edit" class="btn btn-md btn-primary text-white">
-                                        <i class="fas fa-check-circle"></i> Tanggapi
-                                    </a></td>
                                 </tr>
                                 @endforeach
                             </tbody>

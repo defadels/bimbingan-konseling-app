@@ -22,7 +22,8 @@ class BKKarirController extends Controller
      */
     public function index()
     {   
-        $data_bk = LayananBK::where('jenis','karir')->get();
+        $id_user = Auth::user()->id;
+        $data_bk = LayananBK::where('dibuat_oleh_id', $id_user)->where('jenis','Bimbingan Konseling Karir')->get();
 
         return view('siswa.bimbingan.karir.index',compact('data_bk'));
     }
@@ -71,8 +72,9 @@ class BKKarirController extends Controller
         $data_bk->judul_bk = $request->judul_bk;
         $data_bk->nomor_bk = $request->nomor_bk = $nomorBK;
         $data_bk->pokok_pembahasan = $request->pokok_pembahasan;
-        $data_bk->status = 'belum di tanggapi';
-        $data_bk->jenis = 'karir';
+        $data_bk->dibuat_oleh_id = Auth::user()->id;
+        $data_bk->status = 'Belum Ditanggapi';
+        $data_bk->jenis = 'Bimbingan Konseling Karir';
         $data_bk->save();
 
         $data_siswa = new BKSiswa;

@@ -54,7 +54,7 @@
                                     <td>{{$data->nomor_bk}}</td>
                                     <td>{{$data->judul_bk}}</td>
                                     <td>{{trans(ucfirst($data->jenis))}}</td>
-                                    <td><span class="@if($data->status == 'belum di tanggapi'){{'badge bg-danger text-white'}} @else {{'badge bg-success'}} @endif">{{trans(ucfirst($data->status))}}</span></td>
+                                    <td><span class="@if($data->status == 'Belum Ditanggapi'){{'badge bg-danger text-white'}} @else {{'badge bg-success'}} @endif">{{trans(ucfirst($data->status))}}</span></td>
                                     <td>
                                         <a href="" class="btn btn-md btn-info">
                                             <i class="fas fa-eye"></i> Lihat

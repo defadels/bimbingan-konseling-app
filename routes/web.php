@@ -45,7 +45,12 @@ Route::prefix('guru')->name('guru.')->middleware('auth','tolakselainguru')->name
     Route::delete('kelas/{kelas}','KelasController@destroy')->name('kelas.destroy');
 
     Route::get('bimbingan-konseling/masuk','BKController@index')->name('bimbingan.masuk');
+    Route::get('bimbingan-konseling/masuk/lihat/{bk}','BKController@show')->name('bimbingan.masuk.show');
+    Route::get('bimbingan-konseling/masuk/tanggapi/{bk}','BKController@edit')->name('bimbingan.masuk.tanggapi');
+    Route::put('bimbingan-konseling/masuk/{bk}','BKController@update')->name('bimbingan.masuk.update');
+
     Route::get('bimbingan-konseling/ditanggapi','BKTanggapanController@index')->name('bimbingan.ditanggapi');
+    Route::get('bimbingan-konseling/ditanggapi/lihat/{bk}', 'BKTanggapanController@show')->name('bimbingan.ditanggapi.show');
 });
 
 Route::prefix('siswa')->name('siswa.')->middleware('auth','tolakselainsiswa')->namespace('Siswa')->group(function(){

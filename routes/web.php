@@ -22,6 +22,8 @@ Route::prefix('guru')->name('guru.')->middleware('auth','tolakselainguru')->name
 
     Route::get('profile/{profile}','ProfileController@show')->name('profile');
 
+    Route::get('laporan','LaporanController@index')->name('laporan');
+
     Route::get('siswa','SiswaController@index')->name('siswa');
     Route::get('siswa/create','SiswaController@create')->name('siswa.create');
     Route::post('siswa','SiswaController@store')->name('siswa.store');

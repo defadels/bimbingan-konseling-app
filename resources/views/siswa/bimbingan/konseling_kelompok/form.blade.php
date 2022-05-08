@@ -35,14 +35,6 @@
                 <div class="card-body">
                     <h5 class="card-title">Bimbingan Konseling Kelompok</h5>
                     <hr>
-
-                    <div class="card radius-15">
-						<div class="card-body">
-							<div class="card-title">
-								<h4 class="mb-0">Bimbingan Konseling Kelompok</h4>
-								
-							</div>
-							<hr>
 							<form action="{{route($url)}}" method="post">
 								@csrf
 							<div class="table-respnsive">

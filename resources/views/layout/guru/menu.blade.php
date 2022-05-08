@@ -20,6 +20,10 @@
                     </ul>
                 </li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                    href="{{route('guru.laporan')}}" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span
+                        class="hide-menu">Laporan</span></a></li>
+
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                     href="{{route('guru.guru')}}" aria-expanded="false"><i class="mdi mdi-account-card-details"></i><span
                         class="hide-menu">Data Guru</span></a></li>
 

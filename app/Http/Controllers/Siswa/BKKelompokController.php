@@ -22,7 +22,7 @@ class BKKelompokController extends Controller
      */
     public function index()
     {
-        $data_bk = LayananBK::where('jenis','Konseling Kelompok')->get();
+        $data_bk = LayananBK::where('jenis','Bimbingan Konseling Kelompok')->where('dibuat_oleh_id', Auth::user()->id)->get();
 
         
 

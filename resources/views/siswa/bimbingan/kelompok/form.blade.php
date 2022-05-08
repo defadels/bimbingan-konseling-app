@@ -37,15 +37,9 @@
                     <hr>
 					<form action="{{route($url)}}" method="post" enctype="multipart/form-data">
 						@csrf
-						
-                    <div class="card radius-15">
-						<div class="card-body">
-							<div class="card-title">
-								<h4 class="mb-0">Konseling Kelompok</h4>
-								
-							</div>
+					
                             
-							<hr>
+						
 							<div class="table-respnsive">
 								<table class="table" id="tabel_pesanan">
 									<thead class="thead-dark">

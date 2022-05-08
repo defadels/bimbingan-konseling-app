@@ -36,15 +36,6 @@
                     <h5 class="card-title">Bimbingan Konseling Kelompok &nbsp; <span class="@if($data_bk->status == 'Belum Ditanggapi'){{'badge bg-danger text-white'}} @else {{'badge bg-success'}} @endif">{{trans(ucfirst($data_bk->status))}}</span></h5>
                     <hr>
 
-                    <div class="card radius-15">
-						<div class="card-body">
-							<div class="card-title">
-								<h4 class="mb-0">Bimbingan Konseling Kelompok</h4>
-								
-							</div>
-                            
-							<hr>
-
 							<div class="row mb-3">
                                 <div class="col-lg-6">
                                         <label for="">Nomor BK</label>

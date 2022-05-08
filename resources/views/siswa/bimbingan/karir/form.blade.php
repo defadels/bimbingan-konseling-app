@@ -38,7 +38,7 @@
                     <form action="{{route($url)}}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label for="">Nama Siswa</label>
+                            <label for="">Dibuat Oleh</label>
                             <p>{{Auth::user()->nama}} - [Kelas {{Auth::user()->pilihan_kelas->nama}}]</p>
                         </div>
                         <div class="form-group">

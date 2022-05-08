@@ -39,7 +39,7 @@
                         <div class="col-lg-6">
                                 <label for="">Nomor BK </label>
                                 <p>{{$data_bk->nomor_bk}}</p>
-                                <label for="">Nama Siswa</label>
+                                <label for="">Dibuat Oleh</label>
                                 <p>{{$data_bk->dibuat_oleh->nama}} - [Kelas {{$data_bk->dibuat_oleh->pilihan_kelas->nama}}]</p>
                         </div>
                         <div class="col-lg-6">

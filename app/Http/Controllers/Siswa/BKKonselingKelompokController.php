@@ -67,7 +67,7 @@ class BKKonselingKelompokController extends Controller
 
         $sekarang = Carbon::now();
 
-        $nomorBK = 'BK/'.$sekarang->format('ymd').'/'.'KARIR/'.Str::upper(Str::random(4));
+        $nomorBK = 'BK/'.$sekarang->format('ymd').'/'.'BIMBINGAN-KONSELING-KELOMPOK/'.Str::upper(Str::random(4));
         
         $data_bk = new LayananBK;
         $data_bk->nomor_bk = $request->nomor_bk = $nomorBK;

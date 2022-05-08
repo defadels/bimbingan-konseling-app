@@ -181,7 +181,7 @@
 
                         <div class="dropdown-divider"></div>
                         <div class="ps-4 p-10"><a href="javascript:void(0)"
-                                class="btn btn-sm btn-success btn-rounded text-white">View Profile</a></div>
+                                class="btn btn-sm btn-success btn-rounded text-white">Role : {{trans(ucfirst(Auth::user()->jenis))}}</a></div>
                     </ul>
                 </li>
                 <!-- ============================================================== -->

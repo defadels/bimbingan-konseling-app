@@ -1,6 +1,6 @@
 @extends('layout.siswa_layout')
 
-@section('title','Siswa Dashboard')
+@section('title','Dashboard Siswa')
 
 @section('content')
 <div class="page-breadcrumb">
@@ -32,7 +32,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h2 class="card-title">Selamat Datang</h2>
+                    <h2 class="card-title">Selamat Datang, {{Auth::user()->nama}}</h2>
 
                 </div>
             </div>

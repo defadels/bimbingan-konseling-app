@@ -21,7 +21,7 @@ class BKTanggapanController extends Controller
      */
     public function index()
     {
-        $data_bk = LayananBK::where('status','sudah ditanggapi')->get();
+        $data_bk = LayananBK::orderBy('updated_at','ASC')->where('status','Sudah Ditanggapi')->get();
 
         return view('guru.bimbingan.ditanggapi.index',compact('data_bk'));
     }
@@ -55,7 +55,9 @@ class BKTanggapanController extends Controller
      */
     public function show(LayananBK $bk)
     {
-        return view('guru.bimbingan.ditanggapi.show',compact('bk'));
+        $daftar_siswa = BKSiswa::where('bk_siswa_id',$bk->id)->get();
+
+        return view('guru.bimbingan.ditanggapi.show',compact('bk','daftar_siswa'));
     }
 
     /**

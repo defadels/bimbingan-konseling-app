@@ -1,6 +1,6 @@
 @extends('layout.siswa_layout')
 
-@section('title','Siswa Dashboard')
+@section('title','Konseling Kelompok')
 
 @section('content')
 <div class="page-breadcrumb">
@@ -41,7 +41,7 @@
                     <div class="card radius-15">
 						<div class="card-body">
 							<div class="card-title">
-								<h4 class="mb-0">Daftar Nama Siswa</h4>
+								<h4 class="mb-0">Konseling Kelompok</h4>
 								
 							</div>
                             

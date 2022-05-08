@@ -1,6 +1,6 @@
 @extends('layout.guru_layout')
 
-@section('title','Dashboard Guru')
+@section('title','Data Kelas')
 
 @section('content')
 <div class="page-breadcrumb">

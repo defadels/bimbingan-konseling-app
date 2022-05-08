@@ -54,7 +54,9 @@ class BKController extends Controller
      */
     public function show(LayananBK $bk)
     {
-        return view('guru.bimbingan.masuk.show',compact('bk'));
+        $daftar_siswa = BKSiswa::orderBy('created_at','DESC')->where('bk_siswa_id',$bk->id)->get();
+
+        return view('guru.bimbingan.masuk.show',compact('bk','daftar_siswa'));
     }
 
     /**
@@ -67,9 +69,11 @@ class BKController extends Controller
     {   
         $url = 'guru.bimbingan.masuk.update';
 
+        $daftar_siswa = BKSiswa::where('bk_siswa_id',$bk->id)->get();
+
         $button = 'Kirim Tanggapan';
 
-        return view('guru.bimbingan.masuk.form',compact('bk','url','button'));
+        return view('guru.bimbingan.masuk.form',compact('bk','url','button','daftar_siswa'));
     }
 
     /**

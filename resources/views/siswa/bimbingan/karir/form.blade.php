@@ -1,6 +1,6 @@
 @extends('layout.siswa_layout')
 
-@section('title','Siswa Dashboard')
+@section('title','Bimbingan Konseling Karir')
 
 @section('content')
 <div class="page-breadcrumb">

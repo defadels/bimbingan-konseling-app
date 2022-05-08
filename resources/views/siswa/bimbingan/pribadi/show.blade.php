@@ -1,6 +1,6 @@
 @extends('layout.siswa_layout')
 
-@section('title','Siswa Dashboard')
+@section('title','Konseling Pribadi')
 
 @section('content')
 <div class="page-breadcrumb">
@@ -39,7 +39,7 @@
                         <div class="col-lg-6">
                                 <label for="">Nomor BK</label>
                                 <p>{{$data_bk->nomor_bk}}</p>
-                                <label for="">Nama Siswa</label>
+                                <label for="">Dibuat Oleh</label>
                                 <p>{{$data_bk->dibuat_oleh->nama}} - [Kelas {{$data_bk->dibuat_oleh->pilihan_kelas->nama}}]</p>
                         </div>
                         <div class="col-lg-6">
@@ -93,7 +93,7 @@
                             <p>{{$data_bk->tanggapan}}</p> 
                         </div>
 
-                        <button type="button" class="btn btn-md btn-secondary" onclick="window.history.back()">Kembali</button>
+                
                     @else 
 
                         <h2 class="p-3 text-center">Belum ditanggapi oleh guru</h2>

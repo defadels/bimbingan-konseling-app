@@ -1,6 +1,6 @@
 @extends('layout.siswa_layout')
 
-@section('title','Siswa Dashboard')
+@section('title','Bimbingan Konseling Karir')
 
 @section('content')
 <div class="page-breadcrumb">
@@ -92,7 +92,7 @@
                             <p>{{$data_bk->tanggapan}}</p> 
                         </div>
 
-                        <button type="button" class="btn btn-md btn-secondary" onclick="window.history.back()">Kembali</button>
+                        
                     @else 
 
                         <h2 class="p-3 text-center">Belum ditanggapi oleh guru</h2>

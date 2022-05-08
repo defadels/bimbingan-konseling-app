@@ -92,7 +92,7 @@
                     <a href="https://nova.laravel.com">Nova</a>
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://vapor.laravel.com">Vapor</a> --}}
-                    <a href="https://github.com/defadels/bimbingan-konseling-app">Link GitHub Repository</a>
+                    <a href="https://github.com/defadels/bimbingan-konseling-app" target="_blank">Link GitHub Repository</a>
                 </div>
             </div>
         </div>

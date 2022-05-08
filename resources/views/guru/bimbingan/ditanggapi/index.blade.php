@@ -1,6 +1,6 @@
 @extends('layout.guru_layout')
 
-@section('title','Dashboard Guru')
+@section('title','Data BK Ditanggapi')
 
 @section('content')
 <div class="page-breadcrumb">
@@ -39,7 +39,7 @@
                             <thead>
                                 <tr>
                                     <th>Nomor BK</th>
-                                    <th>Ditanggapi Oleh</th>
+                                    <th>Nama Siswa</th>
                                     <th>Jenis BK</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -48,7 +48,7 @@
                               @foreach($data_bk as $bk)  
                                 <tr>
                                     <td>{{$bk->nomor_bk}}</td>
-                                    <td>{{$bk->ditanggapi_oleh->nama}}</td>
+                                    <td>{{$bk->dibuat_oleh->nama}}</td>
                                     <td>{{trans(ucfirst($bk->jenis))}}</td>
                                     <td> <a href="{{route('guru.bimbingan.ditanggapi.show',$bk->id)}}" title="Lihat" class="btn btn-md btn-info">
                                         <i class="fas fa-eye"></i> Lihat

@@ -1,6 +1,6 @@
 @extends('layout.guru_layout')
 
-@section('title','Form Data Siswa')
+@section('title','Lihat Data Siswa')
 
 @section('content')
 <div class="page-breadcrumb">

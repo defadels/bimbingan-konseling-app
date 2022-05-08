@@ -1,6 +1,6 @@
 @extends('layout.siswa_layout')
 
-@section('title','Siswa Dashboard')
+@section('title','Konseling Pribadi')
 
 @section('content')
 <div class="page-breadcrumb">
@@ -36,7 +36,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Konseling Pribadi</h5>
                     <div class="table-responsive">
-                        @if(count($data_bk)>0)) 
+                        @if(count($data_bk) >0 ) 
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
                                 <tr>

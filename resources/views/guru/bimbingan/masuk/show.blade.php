@@ -39,7 +39,7 @@
                         <div class="col-lg-6">
                                 <label for="">Nomor BK</label>
                                 <p>{{$bk->nomor_bk}}</p>
-                                <label for="">Nama Siswa</label>
+                                <label for="">Dibuat Oleh</label>
                                 <p>{{$bk->dibuat_oleh->nama}} - [Kelas {{$bk->dibuat_oleh->pilihan_kelas->nama}}]</p>
                         </div>
                         <div class="col-lg-6">
@@ -47,6 +47,19 @@
                             <p>{{$bk->created_at}}</p>
                         </div>
                     </div>
+
+                    @if(count($daftar_siswa) > 0)
+                    <div class="row mb-3">
+                        <div class="col-lg-12">
+                            <p><strong>Daftar Nama Siswa</strong></p>
+                            <ol>
+                                @foreach($daftar_siswa as $siswa)
+                                <li><p>{{$siswa->nama_siswa}} - [Kelas {{$siswa->kelas}}]</p></li>
+                                @endforeach
+                            </ol>
+                        </div>
+                    </div>
+                    @endif
                     
                         <div class="form-group">
                             <label for="judul_bk">Judul</label>

@@ -48,6 +48,9 @@
                         <div class="pt-3 d-grid">
                             <button class="btn btn-block btn-lg btn-info" type="submit">{{ __('Login') }}</button>
                         </div>
+                        <div class="pt-3 d-grid">
+                            <a class="btn btn-block btn-lg btn-secondary" href="{{ route('register') }}">Belum punya akun</a>
+                        </div>
                     </div>
                 </div>
             </div>

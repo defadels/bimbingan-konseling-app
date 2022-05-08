@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Siswa;
 
-use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -44,9 +46,11 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $profile)
     {
-        //
+        $profile = Auth::user();
+        
+        return view('siswa.profile',compact('profile'));
     }
 
     /**

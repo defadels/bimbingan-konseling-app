@@ -74,6 +74,9 @@
                         <div class="pt-3 d-grid">
                             <button class="btn btn-block btn-lg btn-info" type="submit">{{ __('Register') }}</button>
                         </div>
+                        <div class="pt-3 d-grid">
+                            <a class="btn btn-block btn-lg btn-primary" href="{{route('login')}}">Sudah Punya Akun</a>
+                        </div>
                     </div>
                 </div>
             </div>

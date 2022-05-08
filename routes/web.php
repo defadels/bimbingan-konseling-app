@@ -20,6 +20,8 @@ Route::get('/', function () {
 Route::prefix('guru')->name('guru.')->middleware('auth','tolakselainguru')->namespace('Guru')->group(function(){
     Route::get('/', 'DashboardController@index')->name('dashboard');
 
+    Route::get('profile/{profile}','ProfileController@show')->name('profile');
+
     Route::get('siswa','SiswaController@index')->name('siswa');
     Route::get('siswa/create','SiswaController@create')->name('siswa.create');
     Route::post('siswa','SiswaController@store')->name('siswa.store');
@@ -55,6 +57,8 @@ Route::prefix('guru')->name('guru.')->middleware('auth','tolakselainguru')->name
 
 Route::prefix('siswa')->name('siswa.')->middleware('auth','tolakselainsiswa')->namespace('Siswa')->group(function(){
     Route::get('/','DashboardController@index')->name('dashboard');
+
+    Route::get('profile/{profile}','ProfileController@show')->name('profile');
 
     Route::get('bimbingan-konseling/karir','BKKarirController@index')->name('bimbingan.karir');
     Route::get('bimbingan-konseling/karir/create', 'BKKarirController@create')->name('bimbingan.karir.create');

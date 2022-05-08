@@ -93,9 +93,9 @@ class BKKarirController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(LayananBK $data_bk)
     {
-        //
+        return view('siswa.bimbingan.karir.show',compact('data_bk'));
     }
 
     /**

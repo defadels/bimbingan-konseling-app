@@ -50,12 +50,12 @@
                             <tbody>
                                @foreach($data_bk as $data) 
                                 <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td><span class="badge bg-success">Sudah Ditanggapi</span></td>
+                                    <td>{{$data->nomor_bk}}</td>
+                                    <td>{{$data->judul_bk}}</td>
+                                    <td>{{$data->jenis}}</td>
+                                    <td><span class="@if($data->status == 'Belum Ditanggapi'){{'badge bg-danger text-white'}} @else {{'badge bg-success'}} @endif">{{trans(ucfirst($data->status))}}</span></td>
                                     <td>
-                                        <a href="" class="btn btn-md btn-info">
+                                        <a href="{{route('siswa.bimbingan.kelompok.show',$data->id)}}" class="btn btn-md btn-info">
                                             <i class="fas fa-eye"></i> Lihat
                                         </a>
                                     </td>

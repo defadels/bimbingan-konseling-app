@@ -55,7 +55,7 @@
                                     <td>{{trans(ucfirst($data->jenis))}}</td>
                                     <td><span class="@if($data->status == 'Belum Ditanggapi'){{'badge bg-danger text-white'}} @else {{'badge bg-success'}} @endif">{{trans(ucfirst($data->status))}}</span></td>
                                     <td>
-                                        <a href="" class="btn btn-md btn-info">
+                                        <a href="{{route('siswa.bimbingan.karir.show',$data->id)}}" class="btn btn-md btn-info">
                                             <i class="fas fa-eye"></i> Lihat
                                         </a>
                                     </td>

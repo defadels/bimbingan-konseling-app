@@ -105,7 +105,7 @@ class BKKonselingKelompokController extends Controller
         //         'bk_siswa_id' => $bk_siswa_id,
         //         'nama_siswa' => $nama_siswa[$i],
         //         'kelas' => $kelas[$i],
-        //     ];
+        //     ]; 
         //    DB::table('bk_siswa')->insert($datasave);
         // }
 

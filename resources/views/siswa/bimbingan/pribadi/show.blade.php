@@ -36,7 +36,7 @@
                     <h5 class="card-title">Konseling Pribadi &nbsp; <span class="@if($data_bk->status == 'Belum Ditanggapi'){{'badge bg-danger text-white'}} @else {{'badge bg-success'}} @endif">{{trans(ucfirst($data_bk->status))}}</span></h5>
                     <hr>
                     <div class="row mb-3">
-                        <div class="col-lg-6">
+                        <div class="col-lg-6"> 
                                 <label for="">Nomor BK</label>
                                 <p>{{$data_bk->nomor_bk}}</p>
                                 <label for="">Dibuat Oleh</label>

@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 
-class BKPribadiController extends Controller
+class BKPribadiController extends Controller 
 {
     /**
      * Display a listing of the resource.

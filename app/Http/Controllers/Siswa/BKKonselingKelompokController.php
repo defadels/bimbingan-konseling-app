@@ -109,7 +109,7 @@ class BKKonselingKelompokController extends Controller
         //    DB::table('bk_siswa')->insert($datasave);
         // }
 
-        return redirect()->route('siswa.bimbingan.konseling.kelompok')
+        return redirect()->route('siswa.bimbingan.konseling.kelompok') 
         ->with('message',__('pesan.create',['module' => $data_bk->judul_tanggapan]));
     }
 

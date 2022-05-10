@@ -70,7 +70,7 @@
                                 <label for="pokok_pembahasan">Pokok Pembahasan</label>
                                 
                                 <p>{{$data_bk->pokok_pembahasan}}</p>
-                            </div>
+                            </div> 
         
                                 <button type="button" class="btn btn-md btn-secondary" onclick="window.history.back()">Kembali</button>
 						</div>

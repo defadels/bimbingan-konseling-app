@@ -31,7 +31,7 @@
     <div class="row">
         <div class="col-12">
 
-            <div class="card">
+            <div class="card"> 
                 <div class="card-body">
                     <h5 class="card-title">Bimbingan Konseling Karir &nbsp; <span class="@if($data_bk->status == 'Belum Ditanggapi'){{'badge bg-danger text-white'}} @else {{'badge bg-success'}} @endif">{{trans(ucfirst($data_bk->status))}}</span></h5>
                     <hr>

@@ -6,7 +6,7 @@ use Str;
 use Auth;
 use App\User;
 use App\Kelas;
-use Validator;
+use Validator; 
 use App\BKSiswa;
 use App\LayananBK;
 use Illuminate\Http\Request;

@@ -8,7 +8,7 @@ class LayananBK extends Model
 {
     protected $table = 'format_bk';
 
-    protected $guarded = [];
+    protected $guarded = []; 
 
     public function daftar_siswa(){
         return $this->hasMany('App\BKSiswa', 'bk_siswa_id');

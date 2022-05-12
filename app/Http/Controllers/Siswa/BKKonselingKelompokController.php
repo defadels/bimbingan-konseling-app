@@ -103,7 +103,7 @@ class BKKonselingKelompokController extends Controller
         // for($i = 0; $i = count($nama_siswa); $i++){
         //     $datasave = [
         //         'bk_siswa_id' => $bk_siswa_id, 
-        //         'nama_siswa' => $nama_siswa[$i],
+        //         'nama_siswa' => $nama_siswa[$i], 
         //         'kelas' => $kelas[$i],
         //     ]; 
         //    DB::table('bk_siswa')->insert($datasave);

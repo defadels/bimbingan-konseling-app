@@ -55,8 +55,7 @@
 									</tbody>
 								</table>
 							</div>
-						</div>
-					</div>
+					
           
 					<div class="form-group">
 						<label for="judul">Judul</label>
@@ -70,6 +69,8 @@
 					<button type="button" class="btn btn-md btn-secondary" onclick="window.history.back()">Kembali</button>
 				<input type="submit" value="{{$button}}" class="btn btn-md btn-info">
 				</form>
+			</div>
+		</div>
                 </div>
             </div>
         </div>

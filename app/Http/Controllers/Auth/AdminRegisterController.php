@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends Controller
+class AdminRegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -43,7 +45,7 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('otentikasi.register');
+        return view('otentikasi.admin-register');
     }
     /**
      * Get a validator for an incoming registration request.
@@ -51,15 +53,6 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'nis' => ['required','max:12', 'unique:users'],
-            'nama' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'confirmed']
-        ]);
-    }
 
     /**
      * Create a new user instance after a valid registration.
@@ -67,14 +60,39 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    public function create(Request $request)
     {
-        return User::create([
-            'nis' => $data['nis'],
-            'nama' => $data['nama'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'jenis' => 'siswa',
-        ]);
+        $input = $request->all();
+
+        $rules = [
+            'nip' => ['nullable','max:12', 'unique:users'],
+            'nama' => ['required', 'string', 'max:255'],
+            'email' => ['required',  'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'confirmed'],
+        ];
+
+        $validate = Validator::make($input, $rules)->validate();
+
+     $user = new User;
+
+     $user->nip = $request['nip'];
+     $user->nama = $request['nama'];
+     $user->email = $request['email'];
+     $user->password = Hash::make($request['password']);
+     $user->jenis = 'guru';
+     $user->save();
+
+
+     $data = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required'
+     ]);
+
+      if(Auth::attempt($data)){
+          $request->session()->regenerate();
+          
+          return redirect()->route('home');
+      }  
+            return redirect()->route('pintudepan');
     }
 }

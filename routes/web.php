@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('pintudepan', 'Auth\AdminRegisterController@showRegistrationForm')->name('pintudepan');
+Route::post('pintudepan', 'Auth\AdminRegisterController@create')->name('pintudepan.create');
+
 Route::prefix('guru')->name('guru.')->middleware('auth','tolakselainguru')->namespace('Guru')->group(function(){
     Route::get('/', 'DashboardController@index')->name('dashboard');
 

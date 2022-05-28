@@ -1,3 +1,11 @@
+@php
+
+use App\LayananBK;
+
+$bk_masuk = LayananBK::where('status','Belum Ditanggapi')->get();
+$bk_tanggapan = LayananBK::where('tanggapan_guru_id',Auth::user()->id)->where('status','Sudah Ditanggapi')->get();
+
+@endphp
 <aside class="left-sidebar" data-sidebarbg="skin5">
     <!-- Sidebar scroll-->
     <div class="scroll-sidebar">
@@ -12,10 +20,10 @@
                             class="hide-menu">Bimbingan & Konseling </span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
                         <li class="sidebar-item"><a href="{{route('guru.bimbingan.masuk')}}" class="sidebar-link"><i
-                                    class="mdi mdi-note-outline"></i><span class="hide-menu"> Masuk
+                                    class="mdi mdi-note-outline"></i><span class="hide-menu"> Masuk @if(count($bk_masuk) > 0) <button class="btn btn-sm btn-info btn-rounded ml-3">{{$bk_masuk->count()}}</button> @endif
                                 </span></a></li>
                         <li class="sidebar-item"><a href="{{route('guru.bimbingan.ditanggapi')}}" class="sidebar-link"><i
-                                    class="mdi mdi-note-plus"></i><span class="hide-menu"> Ditanggapi
+                                    class="mdi mdi-note-plus"></i><span class="hide-menu"> Ditanggapi @if(count($bk_tanggapan) > 0) <button class="btn btn-sm btn-info btn-rounded ml-3">{{$bk_tanggapan->count()}}</button> @endif
                                 </span></a></li>
                     </ul>
                 </li>
